@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kreuzfahrt &amp; Reise Packlisten-Generator | fernwehblog.net</title>
+<meta name="description" content="Erstelle deine persönliche Packliste für Kreuzfahrt, Strandurlaub oder Städtereise – für Frauen und Männer. Mit Expertentipps aus 40+ Kreuzfahrten. Kostenlos.">
+<meta property="og:title" content="Kreuzfahrt &amp; Reise Packlisten-Generator | fernwehblog.net">
+<meta property="og:description" content="Erstelle deine persönliche Packliste für Kreuzfahrt, Strandurlaub oder Städtereise – für Frauen und Männer. Mit Expertentipps aus 40+ Kreuzfahrten. Kostenlos.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/*──────────────────────────────────────────────
+  CSS RESET & VARIABLES
+──────────────────────────────────────────────*/
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --contrast:#222222;
+  --contrast-2:#666666;
+  --contrast-3:#33455c;
+  --base:#ebedf0;
+  --base-2:#f9fafa;
+  --base-3:#ffffff;
+  --accent:#06d30d;
+  --accent-hover:#05b00b;
+  --link-hover:#0973ed;
+  --red:#e53e3e;
+  --orange:#ed8936;
+  --green:#38a169;
+  --blue:#3182ce;
+  --font:"Lexend",system-ui,-apple-system,sans-serif;
+  --container:1024px;
+  --radius:8px;
+  --shadow:0 2px 8px rgba(0,0,0,0.06);
+  --shadow-md:0 4px 12px rgba(0,0,0,0.1);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);font-size:17px;line-height:1.6;color:var(--contrast);background:var(--base-3)}
+a{color:var(--accent);text-decoration:none;transition:color .2s}
+a:hover{color:var(--link-hover)}
+img{max-width:100%;height:auto}
+button{font-family:var(--font);cursor:pointer;border:none;background:none}
+input{font-family:var(--font)}
+
+/*──────────────────────────────────────────────
+  LAYOUT
+──────────────────────────────────────────────*/
+.plg-container{max-width:var(--container);margin:0 auto;padding:0 20px}
+.plg-section{padding:40px 0}
+
+/*──────────────────────────────────────────────
+  HERO
+──────────────────────────────────────────────*/
+.plg-hero{background:linear-gradient(135deg,#1a365d 0%,#2b6cb0 100%);color:#fff;padding:60px 0 80px;text-align:center;position:relative}
+.plg-hero h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;margin-bottom:12px;line-height:1.3}
+.plg-hero .plg-subtitle{font-size:clamp(0.95rem,2vw,1.1rem);color:rgba(255,255,255,0.85);max-width:700px;margin:0 auto 20px;line-height:1.6}
+.plg-hero .plg-credit{font-size:0.85rem;color:rgba(255,255,255,0.6)}
+.plg-hero .plg-credit a{color:rgba(255,255,255,0.8)}
+.plg-hero .plg-credit a:hover{color:#fff}
+.plg-hero-icon{font-size:2.5rem;margin-bottom:16px;opacity:0.7}
+
+/*──────────────────────────────────────────────
+  WAVE SEPARATOR
+──────────────────────────────────────────────*/
+.plg-wave{position:relative;overflow:hidden;line-height:0;margin-top:-1px}
+.plg-wave svg{display:block;width:100%;height:50px}
+.plg-wave--hero svg{height:60px}
+
+/*──────────────────────────────────────────────
+  CONFIGURATOR
+──────────────────────────────────────────────*/
+.plg-config{background:var(--base-3)}
+.plg-config h2{font-size:clamp(1.3rem,3vw,1.7rem);font-weight:700;color:var(--contrast);text-align:center;margin-bottom:8px}
+.plg-config .plg-config-sub{text-align:center;color:var(--contrast-2);margin-bottom:32px;font-size:0.95rem}
+.plg-group{margin-bottom:28px}
+.plg-group-label{font-size:1rem;font-weight:600;color:var(--contrast);margin-bottom:10px;display:block}
+.plg-options{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
+.plg-option{display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 10px;border:2px solid var(--base);border-radius:var(--radius);background:var(--base-3);cursor:pointer;transition:all .2s;text-align:center;font-size:0.88rem;font-weight:500;color:var(--contrast);user-select:none}
+.plg-option:hover{border-color:#ccc;background:var(--base-2)}
+.plg-option.selected{border-color:var(--accent);background:rgba(6,211,13,0.06);color:var(--contrast)}
+.plg-option .plg-icon{font-size:1.5rem;line-height:1}
+.plg-cta-wrap{text-align:center;margin-top:36px}
+.plg-cta{display:inline-block;background:var(--accent);color:#fff;font-size:1.05rem;font-weight:700;padding:16px 40px;border-radius:var(--radius);transition:all .2s;border:none;letter-spacing:0.01em}
+.plg-cta:hover:not(:disabled){background:var(--accent-hover);box-shadow:var(--shadow-md);transform:translateY(-1px)}
+.plg-cta:disabled{opacity:0.4;cursor:not-allowed;transform:none}
+
+/*──────────────────────────────────────────────
+  RESULT
+──────────────────────────────────────────────*/
+.plg-result{background:var(--base-3)}
+.plg-badges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:24px}
+.plg-badge{display:inline-flex;align-items:center;gap:5px;padding:5px 14px;border-radius:20px;font-size:0.82rem;font-weight:600;background:var(--base);color:var(--contrast)}
+.plg-progress-wrap{margin-bottom:24px;text-align:center}
+.plg-progress-text{font-size:0.9rem;color:var(--contrast-2);margin-bottom:8px}
+.plg-progress-bar{width:100%;max-width:500px;height:10px;background:var(--base);border-radius:5px;overflow:hidden;margin:0 auto;display:block}
+.plg-progress-fill{height:100%;background:var(--accent);border-radius:5px;transition:width .3s ease}
+
+/*──────────────────────────────────────────────
+  FILTERS & SEARCH
+──────────────────────────────────────────────*/
+.plg-toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:24px}
+.plg-filter-btn{padding:7px 16px;border:2px solid var(--base);border-radius:20px;font-size:0.82rem;font-weight:600;color:var(--contrast-2);background:var(--base-3);transition:all .15s}
+.plg-filter-btn:hover{border-color:#ccc}
+.plg-filter-btn.active{border-color:var(--accent);color:var(--contrast);background:rgba(6,211,13,0.06)}
+.plg-search{flex:1;min-width:200px;padding:9px 14px 9px 36px;border:2px solid var(--base);border-radius:var(--radius);font-size:0.9rem;outline:none;transition:border-color .2s;background:var(--base-3) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23999' viewBox='0 0 24 24'%3E%3Ccircle cx='11' cy='11' r='8' stroke='%23999' stroke-width='2' fill='none'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65' stroke='%23999' stroke-width='2'/%3E%3C/svg%3E") 12px center no-repeat}
+.plg-search:focus{border-color:var(--accent)}
+
+/*──────────────────────────────────────────────
+  ACCORDION / CATEGORIES
+──────────────────────────────────────────────*/
+.plg-category{border:2px solid var(--base);border-radius:var(--radius);margin-bottom:10px;overflow:hidden;background:var(--base-3)}
+.plg-cat-header{display:flex;align-items:center;gap:10px;padding:14px 16px;cursor:pointer;user-select:none;transition:background .15s;font-weight:600;font-size:0.95rem}
+.plg-cat-header:hover{background:var(--base-2)}
+.plg-cat-icon{font-size:1.2rem;flex-shrink:0;width:28px;text-align:center}
+.plg-cat-name{flex:1}
+.plg-cat-count{font-size:0.78rem;font-weight:600;background:var(--base);color:var(--contrast-2);padding:2px 10px;border-radius:12px}
+.plg-cat-toggle{font-size:1.1rem;color:var(--contrast-2);transition:transform .2s;flex-shrink:0}
+.plg-category.open .plg-cat-toggle{transform:rotate(180deg)}
+.plg-cat-body{display:none;border-top:1px solid var(--base);padding:8px 0}
+.plg-category.open .plg-cat-body{display:block}
+.plg-cat-actions{padding:4px 16px 8px;display:flex;gap:8px}
+.plg-cat-actions button{font-size:0.78rem;color:var(--accent);font-weight:600;padding:4px 0}
+.plg-cat-actions button:hover{color:var(--link-hover)}
+
+/*──────────────────────────────────────────────
+  ITEMS
+──────────────────────────────────────────────*/
+.plg-item{display:flex;align-items:flex-start;gap:10px;padding:9px 16px;transition:background .1s;flex-wrap:wrap}
+.plg-item:hover{background:var(--base-2)}
+.plg-item.checked{opacity:0.5}
+.plg-item.checked .plg-item-name{text-decoration:line-through}
+.plg-checkbox{width:18px;height:18px;border:2px solid #ccc;border-radius:4px;flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;margin-top:2px;background:var(--base-3)}
+.plg-checkbox.checked{background:var(--accent);border-color:var(--accent)}
+.plg-checkbox.checked::after{content:"✓";color:#fff;font-size:12px;font-weight:700}
+.plg-item-content{flex:1;min-width:0;display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.plg-priority-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:6px}
+.plg-priority-dot.essential{background:var(--red)}
+.plg-priority-dot.recommended{background:var(--orange)}
+.plg-priority-dot.nice-to-have{background:var(--green)}
+.plg-item-name{font-size:0.9rem;color:var(--contrast);word-break:break-word}
+.plg-gender-tag{font-size:0.75rem;color:var(--contrast-2);flex-shrink:0}
+.plg-item-meta{display:flex;align-items:center;gap:6px;flex-shrink:0;margin-left:auto}
+.plg-qty{font-size:0.78rem;color:var(--contrast-2);white-space:nowrap}
+.plg-luggage-badge{font-size:0.72rem;font-weight:600;padding:2px 8px;border-radius:10px;white-space:nowrap}
+.plg-luggage-badge.handgepaeck{background:#dbeafe;color:#1e40af}
+.plg-luggage-badge.koffer{background:var(--base);color:var(--contrast-2)}
+.plg-luggage-badge.beides{background:#fef3c7;color:#92400e}
+.plg-tip-btn{width:20px;height:20px;border-radius:50%;background:var(--base);color:var(--contrast-2);font-size:11px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:all .15s;border:none;line-height:1}
+.plg-tip-btn:hover{background:var(--accent);color:#fff}
+.plg-tip{background:linear-gradient(135deg,#f6f8fb,#f1f5f9);border:2px solid var(--base);border-left:5px solid var(--accent);border-radius:var(--radius);padding:10px 14px;font-size:0.83rem;color:var(--contrast-2);margin:4px 16px 8px 44px;line-height:1.5;display:none}
+.plg-tip.show{display:block}
+
+/*──────────────────────────────────────────────
+  ACTION BUTTONS
+──────────────────────────────────────────────*/
+.plg-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:32px}
+.plg-btn{padding:12px 28px;border-radius:var(--radius);font-size:0.92rem;font-weight:600;transition:all .2s;border:2px solid transparent}
+.plg-btn--primary{background:var(--accent);color:#fff}
+.plg-btn--primary:hover{background:var(--accent-hover);box-shadow:var(--shadow)}
+.plg-btn--outline{background:var(--base-3);color:var(--contrast);border-color:var(--base)}
+.plg-btn--outline:hover{border-color:#ccc;background:var(--base-2)}
+
+/*──────────────────────────────────────────────
+  TIPS SECTION
+──────────────────────────────────────────────*/
+.plg-tips{background:var(--base-2);border-radius:var(--radius);padding:28px;margin-top:40px}
+.plg-tips h3{font-size:1.1rem;font-weight:700;margin-bottom:16px;color:var(--contrast)}
+.plg-tips-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.plg-tip-card{display:flex;align-items:center;gap:10px;padding:14px 16px;background:var(--base-3);border:2px solid var(--base);border-radius:var(--radius);transition:all .2s;color:var(--contrast);font-size:0.88rem;font-weight:500}
+.plg-tip-card:hover{border-color:var(--accent);color:var(--accent);box-shadow:var(--shadow)}
+.plg-tip-card .plg-tc-icon{font-size:1.2rem;flex-shrink:0}
+
+/*──────────────────────────────────────────────
+  FOOTER
+──────────────────────────────────────────────*/
+.plg-footer{background:var(--base-2);padding:40px 0;margin-top:40px;border-top:1px solid var(--base)}
+.plg-footer-inner{text-align:center}
+.plg-footer-title{font-size:0.95rem;font-weight:700;color:var(--contrast);margin-bottom:16px}
+.plg-footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 20px;margin-bottom:16px}
+.plg-footer-links a{font-size:0.85rem;color:var(--contrast-2)}
+.plg-footer-links a:hover{color:var(--accent)}
+.plg-footer-copy{font-size:0.8rem;color:var(--contrast-2)}
+
+/*──────────────────────────────────────────────
+  RESPONSIVE
+──────────────────────────────────────────────*/
+@media(max-width:768px){
+  .plg-hero{padding:40px 0 60px}
+  .plg-options{grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px}
+  .plg-option{padding:10px 8px;font-size:0.82rem}
+  .plg-option .plg-icon{font-size:1.3rem}
+  .plg-toolbar{flex-direction:column;align-items:stretch}
+  .plg-search{min-width:auto}
+  .plg-item{padding:8px 12px}
+  .plg-item-meta{margin-left:0;width:100%;padding-left:28px;margin-top:4px}
+  .plg-tip{margin-left:28px}
+  .plg-tips-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .plg-options{grid-template-columns:repeat(2,1fr)}
+  .plg-badges{gap:6px}
+  .plg-actions{flex-direction:column;align-items:stretch}
+  .plg-btn{text-align:center}
+}
+
+/*──────────────────────────────────────────────
+  PRINT
+──────────────────────────────────────────────*/
+@media print{
+  body{font-size:10pt;color:#000;background:#fff}
+  .plg-hero,.plg-wave,.plg-config,.plg-toolbar,.plg-actions,.plg-tips,.plg-footer,.plg-cat-actions,.plg-tip-btn,.plg-cta-wrap,.no-print{display:none!important}
+  .plg-print-header{display:block!important;text-align:center;font-size:14pt;font-weight:700;margin-bottom:12pt;padding-bottom:8pt;border-bottom:1px solid #ccc}
+  .plg-result{padding:0}
+  .plg-category{border:none;margin-bottom:6pt;page-break-inside:avoid}
+  .plg-category,.plg-category.open .plg-cat-body{display:block!important}
+  .plg-cat-body{display:block!important;border:none;padding:0}
+  .plg-cat-header{padding:6pt 0;border-bottom:1pt solid #ccc}
+  .plg-cat-toggle{display:none}
+  .plg-item{padding:3pt 0}
+  .plg-item.checked{opacity:1;text-decoration:none}
+  .plg-checkbox{border:1.5pt solid #000;background:#fff!important}
+  .plg-checkbox.checked{background:#fff!important}
+  .plg-checkbox.checked::after{color:#000}
+  .plg-luggage-badge{border:1pt solid #999;background:none!important;color:#000!important}
+  .plg-progress-wrap{margin-bottom:12pt}
+  .plg-progress-bar{display:none}
+  .plg-badges{justify-content:flex-start;margin-bottom:8pt}
+  .plg-badge{background:none;border:1pt solid #ccc;padding:2pt 8pt}
+  .plg-tip.show{display:block;background:none;border:1pt solid #ccc;border-left:3pt solid #000;margin-left:28pt}
+  a{color:#000!important;text-decoration:none!important}
+}
+.plg-print-header{display:none}
+</style>
+</head>
+<body>
+<!-- ==================== HERO ==================== -->
+<div class="plg-hero">
+  <div class="plg-container">
+    <div class="plg-hero-icon">&#9875;</div>
+    <h1>Kreuzfahrt &amp; Reise Packlisten-Generator</h1>
+    <p class="plg-subtitle">Nie wieder etwas Wichtiges vergessen. Erstelle deine personalisierte Packliste basierend auf Reiseziel, Reiseart und Jahreszeit &ndash; mit Expertentipps aus 40+ Kreuzfahrten.</p>
+    <p class="plg-credit">Ein Tool von <a href="https://fernwehblog.net/koffer-packliste-kreuzfahrt/" target="_blank" rel="noopener">fernwehblog.net</a></p>
+  </div>
+</div>
+<div class="plg-wave plg-wave--hero">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,0 C360,60 1080,0 1440,40 L1440,0 L0,0 Z" fill="#2b6cb0"/></svg>
+</div>
+
+<!-- ==================== APP ROOT ==================== -->
+<div id="app"></div>
+
+<!-- ==================== FOOTER ==================== -->
+<div class="plg-footer" id="plg-footer">
+  <div class="plg-container plg-footer-inner">
+    <div class="plg-footer-title">Kreuzfahrt &amp; Reise Packlisten-Generator &ndash; Ein Tool von fernwehblog.net</div>
+    <div class="plg-footer-links">
+      <a href="https://fernwehblog.net/koffer-packliste-kreuzfahrt/" target="_blank" rel="noopener">Die ultimative Koffer-Packliste als Blog-Artikel mit Download-PDF</a>
+      <a href="https://fernwehblog.net/reiseapotheke/" target="_blank" rel="noopener">Reiseapotheke: Alle Medikamente im Detail</a>
+      <a href="https://fernwehblog.net/reiseplanung-mit-ki-chatgpt-perplexity-guide/" target="_blank" rel="noopener">Mehr Tools &amp; Guides zur Reiseplanung mit KI</a>
+      <a href="https://fernwehblog.net/about-us/" target="_blank" rel="noopener">&Uuml;ber Daniel Dorfer &ndash; Reisejournalist &amp; Kreuzfahrtblogger</a>
+    </div>
+    <div class="plg-footer-copy">&copy; 2025 fernwehblog.net &ndash; Basierend auf der Erfahrung aus 40+ Kreuzfahrten und zahllosen Familienreisen</div>
+  </div>
+</div>
+
+<script>
+/* ===================================================================
+   PACKING ITEMS DATABASE
+   =================================================================== */
+const ITEMS=[
+// ─── KLEIDUNG (alle) ───
+{id:"tshirts",name:"T-Shirts / Oberteile",category:"Kleidung",quantity:"1 pro 2 Tage",quantityPerDay:true,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"recommended"},
+{id:"langarm",name:"Langarm-Shirts",category:"Kleidung",quantity:"2",quantityPerDay:false,quantityPerPerson:false,conditions:{seasons:["uebergang","winter"]},luggage:"koffer",priority:"recommended"},
+{id:"sommerhose",name:"Leichte Sommerhose",category:"Kleidung",quantity:"2",quantityPerDay:false,quantityPerPerson:false,conditions:{seasons:["sommer"]},luggage:"koffer",priority:"recommended"},
+{id:"shorts",name:"Kurze Hosen / Shorts",category:"Kleidung",quantity:"2",quantityPerDay:false,quantityPerPerson:false,conditions:{seasons:["sommer"]},luggage:"koffer",priority:"recommended"},
+{id:"jeans",name:"Lange Hose / Jeans",category:"Kleidung",quantity:"2",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"recommended"},
+{id:"guertel",name:"G\u00fcrtel",category:"Kleidung",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"nice-to-have"},
+{id:"pullover",name:"Pullover / Hoodie / Sweatshirt",category:"Kleidung",quantity:"2",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"recommended",proTip:"Auch im Sommer sinnvoll: Die Klimaanlage auf Kreuzfahrtschiffen ist oft eiskalt."},
+{id:"schlafanzug",name:"Schlafanzug / Nachtw\u00e4sche",category:"Kleidung",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"recommended"},
+{id:"unterwaesche",name:"Unterw\u00e4sche",category:"Kleidung",quantity:"1 pro Tag + 2 Reserve",quantityPerDay:true,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"essential"},
+{id:"socken",name:"Socken",category:"Kleidung",quantity:"1 Paar pro Tag",quantityPerDay:true,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"essential"},
+{id:"leichte-jacke",name:"Leichte Jacke / Cardigan",category:"Kleidung",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"handgepaeck",priority:"essential",proTip:"Im Handgep\u00e4ck mitnehmen \u2013 an Bord und im Flugzeug oft \u00fcberraschend k\u00fchl."},
+{id:"regenjacke",name:"Regenjacke (leicht, packbar)",category:"Kleidung",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"essential"},
+{id:"fleecejacke",name:"Warmer Pullover / Fleecejacke",category:"Kleidung",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{seasons:["winter"],destinations:["nordeuropa"]},luggage:"koffer",priority:"recommended"},
+{id:"sportkleidung",name:"Sportkleidung",category:"Kleidung",quantity:"1 Set",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"nice-to-have"},
+// ─── KLEIDUNG (Frauen) ───
+{id:"bh",name:"BH / Dessous",category:"Kleidung",quantity:"3-4",quantityPerDay:false,quantityPerPerson:false,conditions:{gender:["frau"]},luggage:"koffer",priority:"essential"},
+{id:"strumpfhosen",name:"Strumpfhosen",category:"Kleidung",quantity:"2",quantityPerDay:false,quantityPerPerson:false,conditions:{gender:["frau"],seasons:["winter","uebergang"]},luggage:"koffer",priority:"recommended"},
+{id:"sommerkleid",name:"Kleid / Sommerkleid / Strandkleid",category:"Kleidung",quantity:"1-2",quantityPerDay:false,quantityPerPerson:false,conditions:{gender:["frau"],seasons:["sommer"]},luggage:"koffer",priority:"recommended"},
+{id:"rock",name:"Rock",category:"Kleidung",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{gender:["frau"],seasons:["sommer"]},luggage:"koffer",priority:"nice-to-have"},
+{id:"bluse",name:"Bluse",category:"Kleidung",quantity:"1-2",quantityPerDay:false,quantityPerPerson:false,conditions:{gender:["frau"]},luggage:"koffer",priority:"recommended"},
+{id:"tops",name:"Tops",category:"Kleidung",quantity:"2-3",quantityPerDay:false,quantityPerPerson:false,conditions:{gender:["frau"],seasons:["sommer"]},luggage:"koffer",priority:"recommended"},
+{id:"abendkleid",name:"Abendkleid / elegantes Outfit (Gala-Abend)",category:"Kleidung",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{gender:["frau"],tripTypes:["kreuzfahrt"]},luggage:"koffer",priority:"recommended",proTip:"Auf den meisten Kreuzfahrtschiffen gibt es 1-2 formelle Abende. Ein elegantes Kleid oder schicker Jumpsuit reicht v\u00f6llig."},
+{id:"schal-frau",name:"Schal / Seidentuch / Kopftuch",category:"Kleidung",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{gender:["frau"]},luggage:"koffer",priority:"nice-to-have",proTip:"Vielseitig einsetzbar: Als Sonnenschutz, Schulterbedeckung in Kirchen und Moscheen, oder gegen die Klimaanlage."},
+{id:"bikini",name:"Bikini / Badeanzug",category:"Kleidung",quantity:"2",quantityPerDay:false,quantityPerPerson:false,conditions:{gender:["frau"],seasons:["sommer"],tripTypes:["kreuzfahrt","strandurlaub"]},luggage:"koffer",priority:"recommended"},
+// ─── KLEIDUNG (Männer) ───
+{id:"unterhemden",name:"Unterhemden",category:"Kleidung",quantity:"3",quantityPerDay:false,quantityPerPerson:false,conditions:{gender:["mann"]},luggage:"koffer",priority:"recommended"},
+{id:"polo",name:"Polo Shirts",category:"Kleidung",quantity:"2",quantityPerDay:false,quantityPerPerson:false,conditions:{gender:["mann"],seasons:["sommer"]},luggage:"koffer",priority:"recommended"},
+{id:"hemden",name:"Hemden",category:"Kleidung",quantity:"1-2",quantityPerDay:false,quantityPerPerson:false,conditions:{gender:["mann"]},luggage:"koffer",priority:"recommended"},
+{id:"anzug",name:"Anzug / Sakko mit Hemd und Krawatte (Gala-Abend)",category:"Kleidung",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{gender:["mann"],tripTypes:["kreuzfahrt"]},luggage:"koffer",priority:"recommended",proTip:"Bei Kreuzfahrten gibt es 1-2 Gala-Abende. Ein dunkler Anzug oder zumindest Sakko mit Hemd reicht aus."},
+{id:"hosentraeger",name:"Hosentr\u00e4ger",category:"Kleidung",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{gender:["mann"],tripTypes:["kreuzfahrt"]},luggage:"koffer",priority:"nice-to-have"},
+{id:"badehose",name:"Badehose",category:"Kleidung",quantity:"2",quantityPerDay:false,quantityPerPerson:false,conditions:{gender:["mann"],seasons:["sommer"],tripTypes:["kreuzfahrt","strandurlaub"]},luggage:"koffer",priority:"recommended"},
+
+// ─── SCHUHE & ACCESSOIRES ───
+{id:"sneaker",name:"Bequeme Laufschuhe / Sneaker",category:"Schuhe & Accessoires",quantity:"1 Paar",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"essential"},
+{id:"wanderschuhe",name:"Wanderschuhe / feste Schuhe",category:"Schuhe & Accessoires",quantity:"1 Paar",quantityPerDay:false,quantityPerPerson:false,conditions:{tripTypes:["natur","staedtereise"]},luggage:"koffer",priority:"recommended"},
+{id:"sandalen",name:"Bequeme Sandalen",category:"Schuhe & Accessoires",quantity:"1 Paar",quantityPerDay:false,quantityPerPerson:false,conditions:{seasons:["sommer"]},luggage:"koffer",priority:"recommended"},
+{id:"flipflops",name:"Flip-Flops / Badelatschen",category:"Schuhe & Accessoires",quantity:"1 Paar",quantityPerDay:false,quantityPerPerson:false,conditions:{tripTypes:["strandurlaub","kreuzfahrt"]},luggage:"koffer",priority:"recommended",proTip:"F\u00fcr den Poolbereich und die Kabine auf dem Schiff unverzichtbar."},
+{id:"aquaschuhe",name:"Badeschuhe / Aquaschuhe",category:"Schuhe & Accessoires",quantity:"1 Paar",quantityPerDay:false,quantityPerPerson:false,conditions:{seasons:["sommer"],tripTypes:["strandurlaub"],destinations:["karibik"]},luggage:"koffer",priority:"recommended"},
+{id:"elegante-schuhe",name:"Elegante Schuhe (Abend)",category:"Schuhe & Accessoires",quantity:"1 Paar",quantityPerDay:false,quantityPerPerson:false,conditions:{tripTypes:["kreuzfahrt"]},luggage:"koffer",priority:"recommended"},
+{id:"sonnenhut",name:"Sonnenhut / Cap",category:"Schuhe & Accessoires",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{seasons:["sommer"]},luggage:"handgepaeck",priority:"recommended"},
+{id:"sonnenbrille",name:"Sonnenbrille",category:"Schuhe & Accessoires",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"handgepaeck",priority:"essential"},
+{id:"rucksack",name:"Rucksack f\u00fcr Landausfl\u00fcge",category:"Schuhe & Accessoires",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"essential"},
+{id:"strandtasche",name:"Strandtasche",category:"Schuhe & Accessoires",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{gender:["frau"],seasons:["sommer"],tripTypes:["strandurlaub","kreuzfahrt"]},luggage:"koffer",priority:"nice-to-have"},
+{id:"handtasche",name:"Handtasche",category:"Schuhe & Accessoires",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{gender:["frau"]},luggage:"koffer",priority:"nice-to-have"},
+
+// ─── KULTURBEUTEL & HYGIENE (alle) ───
+{id:"duschgel",name:"Duschgel (Reisegr\u00f6\u00dfe)",category:"Kulturbeutel & Hygiene",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"recommended",proTip:"In der Kabine gibt es Basis-Waschlotion und Seife. Wer auf seine eigenen Produkte nicht verzichten will, bringt Minis aus der Drogerie mit."},
+{id:"shampoo",name:"Shampoo & Sp\u00fclung (Reisegr\u00f6\u00dfe)",category:"Kulturbeutel & Hygiene",quantity:"1 Set",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"recommended"},
+{id:"zahnbuerste",name:"Zahnb\u00fcrste / elektrische Zahnb\u00fcrste",category:"Kulturbeutel & Hygiene",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"essential"},
+{id:"zahnpasta",name:"Zahnpasta",category:"Kulturbeutel & Hygiene",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"essential"},
+{id:"zahnseide",name:"Zahnseide / Interdentalbürsten",category:"Kulturbeutel & Hygiene",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"recommended"},
+{id:"deo",name:"Deo",category:"Kulturbeutel & Hygiene",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"essential"},
+{id:"haarbuerste",name:"Haarb\u00fcrste / Kamm",category:"Kulturbeutel & Hygiene",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"recommended"},
+{id:"bodylotion",name:"Handcreme / Bodylotion",category:"Kulturbeutel & Hygiene",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"recommended"},
+{id:"lippenpflege",name:"Lippenpflege / Labello",category:"Kulturbeutel & Hygiene",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"handgepaeck",priority:"recommended",proTip:"Salzige Seeluft trocknet die Lippen schnell aus \u2013 Labello geh\u00f6rt immer griffbereit ins Handgep\u00e4ck."},
+{id:"nagelset",name:"Nagelset (Schere, Knipser, Feile, Pinzette)",category:"Kulturbeutel & Hygiene",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"recommended",proTip:"Nicht ins Handgep\u00e4ck!"},
+{id:"wattestaebchen",name:"Wattest\u00e4bchen (Reisegr\u00f6\u00dfe)",category:"Kulturbeutel & Hygiene",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"nice-to-have"},
+{id:"desinfektionsmittel",name:"Handdesinfektionsmittel",category:"Kulturbeutel & Hygiene",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"handgepaeck",priority:"recommended"},
+{id:"febreze",name:"Febreze / Textilerfrischer",category:"Kulturbeutel & Hygiene",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{tripTypes:["kreuzfahrt"]},luggage:"koffer",priority:"nice-to-have"},
+{id:"reisewaschmittel",name:"Reisewaschmittel",category:"Kulturbeutel & Hygiene",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"nice-to-have"},
+// ─── KULTURBEUTEL (Frauen) ───
+{id:"kosmetik",name:"Kosmetik / Schminkzeug / Make-up",category:"Kulturbeutel & Hygiene",quantity:"1 Set",quantityPerDay:false,quantityPerPerson:false,conditions:{gender:["frau"]},luggage:"koffer",priority:"recommended"},
+{id:"haarspray",name:"Haarspray / Schaumfestiger",category:"Kulturbeutel & Hygiene",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{gender:["frau"]},luggage:"koffer",priority:"nice-to-have"},
+{id:"damenhygiene",name:"Damenhygieneartikel (Binden / Tampons)",category:"Kulturbeutel & Hygiene",quantity:"nach Bedarf",quantityPerDay:false,quantityPerPerson:false,conditions:{gender:["frau"]},luggage:"koffer",priority:"essential"},
+{id:"parfuem-frau",name:"Parf\u00fcm (Reisegr\u00f6\u00dfe)",category:"Kulturbeutel & Hygiene",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{gender:["frau"]},luggage:"koffer",priority:"nice-to-have"},
+// ─── KULTURBEUTEL (Männer) ───
+{id:"rasierer",name:"Rasierer / Elektrorasierer",category:"Kulturbeutel & Hygiene",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{gender:["mann"]},luggage:"koffer",priority:"essential"},
+{id:"rasierschaum",name:"Rasierschaum / Rasiergel",category:"Kulturbeutel & Hygiene",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{gender:["mann"]},luggage:"koffer",priority:"recommended"},
+{id:"haargel",name:"Haargel / Haarstyling",category:"Kulturbeutel & Hygiene",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{gender:["mann"]},luggage:"koffer",priority:"nice-to-have"},
+{id:"aftershave",name:"Aftershave / Parf\u00fcm (Reisegr\u00f6\u00dfe)",category:"Kulturbeutel & Hygiene",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{gender:["mann"]},luggage:"koffer",priority:"nice-to-have"},
+
+// ─── REISEAPOTHEKE ───
+{id:"schmerzmittel",name:"Schmerz- und Fiebermittel (Ibuprofen, Paracetamol)",category:"Reiseapotheke",quantity:"1 Packung",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"essential",proTip:"Aspirin effect ist praktisch, weil man kein Wasser zum Einnehmen braucht."},
+{id:"fieberthermometer",name:"Fieberthermometer",category:"Reiseapotheke",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"recommended"},
+{id:"durchfall",name:"Mittel gegen Durchfall (Imodium akut / Loperamid)",category:"Reiseapotheke",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"essential",proTip:"Grad auf Fernreisen und in s\u00fcdlichen L\u00e4ndern kann Durchfall schnell den Tag ruinieren."},
+{id:"verstopfung",name:"Mittel gegen Verstopfung (Dulcolax / Bisacodyl)",category:"Reiseapotheke",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"recommended"},
+{id:"sodbrennen",name:"Mittel gegen Sodbrennen (Talcid / Maaloxan)",category:"Reiseapotheke",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"recommended",proTip:"Am B\u00fcffet zu sehr \u00fcber die Str\u00e4nge geschlagen? Talcid-Kautabletten helfen schnell."},
+{id:"uebelkeit",name:"Mittel gegen \u00dcbelkeit/Erbrechen (Vomex A)",category:"Reiseapotheke",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"recommended"},
+{id:"elotrans",name:"Rehydratationsl\u00f6sung (Elotrans)",category:"Reiseapotheke",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{destinations:["karibik","asien","fernreise"]},luggage:"koffer",priority:"recommended",proTip:"Bei Durchfall den Fl\u00fcssigkeits- und Elektrolythaushalt schnell ausgleichen."},
+{id:"seekrankheit",name:"Mittel gegen Seekrankheit (Superpep / Vomex)",category:"Reiseapotheke",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{tripTypes:["kreuzfahrt"]},luggage:"handgepaeck",priority:"essential",proTip:"Mindestens f\u00fcr die ersten Seetage einpacken. Gibt es auch als Kaugummi \u2013 praktischer als Tabletten."},
+{id:"erkaeltung",name:"Medikamente gegen Erk\u00e4ltung, Halsschmerzen, Husten",category:"Reiseapotheke",quantity:"1 Set",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"recommended",proTip:"Stark klimatisierte Innenr\u00e4ume an Bord machen Erk\u00e4ltungen wahrscheinlicher als man denkt."},
+{id:"nasenspray",name:"Abschwellendes Nasenspray",category:"Reiseapotheke",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"recommended"},
+{id:"lutschtabletten",name:"Lutschtabletten gegen Halsschmerzen",category:"Reiseapotheke",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"nice-to-have"},
+{id:"sonnencreme",name:"Sonnencreme LSF 50",category:"Reiseapotheke",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{seasons:["sommer"]},luggage:"koffer",priority:"essential",proTip:"An Bord von Kreuzfahrtschiffen extrem teuer. Unbedingt von zu Hause mitbringen!"},
+{id:"aftersun",name:"After-Sun-Lotion (Aloe Vera)",category:"Reiseapotheke",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{seasons:["sommer"]},luggage:"koffer",priority:"recommended"},
+{id:"insektenschutz",name:"Insektenschutzmittel (Autan Spray)",category:"Reiseapotheke",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{seasons:["sommer"],destinations:["karibik","asien","fernreise"]},luggage:"koffer",priority:"essential"},
+{id:"insektenstiche",name:"Mittel gegen Insektenstiche (After Bite / Bite Away)",category:"Reiseapotheke",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{seasons:["sommer"],destinations:["karibik","asien","fernreise"]},luggage:"koffer",priority:"recommended"},
+{id:"wunddesinfektion",name:"Wunddesinfektionsmittel",category:"Reiseapotheke",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"essential"},
+{id:"pflaster",name:"Wasserfeste Wundpflaster",category:"Reiseapotheke",quantity:"1 Set",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"essential"},
+{id:"verbaende",name:"Sterile Verb\u00e4nde / Kompressen",category:"Reiseapotheke",quantity:"1 Set",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"recommended"},
+{id:"einweghandschuhe",name:"Einweghandschuhe",category:"Reiseapotheke",quantity:"2-4",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"nice-to-have"},
+{id:"schere-pinzette",name:"Kleine Schere & Pinzette",category:"Reiseapotheke",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"recommended"},
+{id:"augentropfen",name:"Augentropfen (Bepanthen)",category:"Reiseapotheke",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"recommended",proTip:"Trockene Augen nach langen Flugreisen oder durch Klimaanlagen \u2013 Augentropfen schaffen schnell Abhilfe."},
+{id:"antihistaminikum",name:"Mittel gegen Allergien / Antihistaminikum",category:"Reiseapotheke",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"recommended"},
+{id:"pilzinfektion",name:"Mittel gegen Pilzinfektionen",category:"Reiseapotheke",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"nice-to-have"},
+{id:"kondome",name:"Kondome / Verh\u00fctungsmittel",category:"Reiseapotheke",quantity:"nach Bedarf",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"nice-to-have"},
+{id:"ffp2",name:"FFP2-Masken",category:"Reiseapotheke",quantity:"2",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"nice-to-have"},
+{id:"dauermedikamente",name:"Pers\u00f6nliche Dauermedikamente",category:"Reiseapotheke",quantity:"nach Bedarf",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"handgepaeck",priority:"essential",proTip:"IMMER im Handgep\u00e4ck! Wenn der Koffer verloren geht, stehst du im Ausland ohne deine Medizin da. Rezeptkopie mitnehmen."},
+{id:"arnica",name:"Arnica / Profelan Salbe (Prellungen)",category:"Reiseapotheke",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"nice-to-have"},
+{id:"bachblueten",name:"Bachbl\u00fcten Rescura Tropfen",category:"Reiseapotheke",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"nice-to-have"},
+{id:"vitaminc",name:"Vitamin C & Zink",category:"Reiseapotheke",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"nice-to-have"},
+{id:"probiotika",name:"Probiotika",category:"Reiseapotheke",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{destinations:["karibik","asien","fernreise"]},luggage:"koffer",priority:"nice-to-have"},
+
+// ─── TECHNIK & GADGETS ───
+{id:"smartphone",name:"Smartphone + Ladekabel",category:"Technik & Gadgets",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"handgepaeck",priority:"essential"},
+{id:"powerbank",name:"Powerbank (unter 27.000 mAh f\u00fcr Flug)",category:"Technik & Gadgets",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"handgepaeck",priority:"essential"},
+{id:"kamera",name:"Kamera + Speicherkarten + Ladekabel",category:"Technik & Gadgets",quantity:"1 Set",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"handgepaeck",priority:"recommended",proTip:"Speicherkarten lieber eine zu viel als zu wenig. Auf Kreuzfahrten fotografiert man mehr als gedacht."},
+{id:"tablet",name:"Tablet + Ladekabel",category:"Technik & Gadgets",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"handgepaeck",priority:"nice-to-have"},
+{id:"laptop",name:"Notebook / Laptop + Netzteil",category:"Technik & Gadgets",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"handgepaeck",priority:"nice-to-have"},
+{id:"reiseadapter",name:"Universal-Reiseadapter",category:"Technik & Gadgets",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"essential",proTip:"Auf Kreuzfahrtschiffen gibt es oft europ\u00e4ische UND amerikanische Steckdosen. Bei deutschen Reedereien meist kein Adapter n\u00f6tig."},
+{id:"mehrfachsteckdose",name:"Mehrfachsteckdose (ohne \u00dcberspannungsschutz!)",category:"Technik & Gadgets",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{tripTypes:["kreuzfahrt"]},luggage:"koffer",priority:"recommended",proTip:"In Kabinen gibt es meist nur 1-2 Steckdosen. Mehrfachstecker ist Gold wert. Achtung: TUI Mein Schiff verbietet Steckdosenleisten!"},
+{id:"kopfhoerer",name:"Kopfh\u00f6rer (Noise Cancelling f\u00fcr Flug)",category:"Technik & Gadgets",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"handgepaeck",priority:"recommended"},
+{id:"ereader",name:"E-Reader / Kindle",category:"Technik & Gadgets",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"handgepaeck",priority:"nice-to-have"},
+{id:"usbstick",name:"USB-Stick mit Reisedokumenten-Kopien",category:"Technik & Gadgets",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"handgepaeck",priority:"recommended"},
+
+// ─── DOKUMENTE & FINANZEN ───
+{id:"reisepass",name:"Reisepass (G\u00fcltigkeit pr\u00fcfen: mind. 6 Monate!)",category:"Dokumente & Finanzen",quantity:"1",quantityPerDay:false,quantityPerPerson:true,conditions:{},luggage:"handgepaeck",priority:"essential",proTip:"Auf Kreuzfahrt den Pass IMMER im Safe der Kabine aufbewahren. Nicht auf Landausfl\u00fcge mitnehmen, wenn nicht zwingend n\u00f6tig."},
+{id:"personalausweis",name:"Personalausweis",category:"Dokumente & Finanzen",quantity:"1",quantityPerDay:false,quantityPerPerson:true,conditions:{},luggage:"handgepaeck",priority:"essential",proTip:"Personalausweis UND Reisepass mitnehmen, auch wenn nur einer n\u00f6tig w\u00e4re. Getrennt aufbewahren!"},
+{id:"visum",name:"Visum / E-Visa-Ausdrucke",category:"Dokumente & Finanzen",quantity:"nach Bedarf",quantityPerDay:false,quantityPerPerson:false,conditions:{destinations:["asien","fernreise"]},luggage:"handgepaeck",priority:"recommended"},
+{id:"krankenversicherung",name:"Krankenversicherungskarte",category:"Dokumente & Finanzen",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"handgepaeck",priority:"essential"},
+{id:"auslandskrankenversicherung",name:"Auslandskrankenversicherung (Nachweis)",category:"Dokumente & Finanzen",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"handgepaeck",priority:"essential"},
+{id:"allergiepass",name:"Allergiepass (falls vorhanden)",category:"Dokumente & Finanzen",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"handgepaeck",priority:"nice-to-have"},
+{id:"impfpass",name:"Impfpass",category:"Dokumente & Finanzen",quantity:"1",quantityPerDay:false,quantityPerPerson:true,conditions:{destinations:["karibik","asien","fernreise"]},luggage:"handgepaeck",priority:"recommended"},
+{id:"kreditkarte",name:"Kreditkarte (mind. 2 verschiedene)",category:"Dokumente & Finanzen",quantity:"2",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"handgepaeck",priority:"essential"},
+{id:"eckarte",name:"EC-Karte / Maestro-Karte",category:"Dokumente & Finanzen",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"handgepaeck",priority:"recommended"},
+{id:"bargeld",name:"Bargeld + Fremdw\u00e4hrung",category:"Dokumente & Finanzen",quantity:"nach Bedarf",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"handgepaeck",priority:"essential",proTip:"Fremdw\u00e4hrung am besten 2 Wochen vorher bei der Hausbank bestellen."},
+{id:"fuehrerschein",name:"F\u00fchrerschein (ggf. internationaler)",category:"Dokumente & Finanzen",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"handgepaeck",priority:"recommended"},
+{id:"buchungsbestaetigungen",name:"Buchungsbest\u00e4tigungen (Flug, Hotel, Kreuzfahrt)",category:"Dokumente & Finanzen",quantity:"1 Set",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"handgepaeck",priority:"essential"},
+{id:"bordkarte",name:"Kreuzfahrt-Bordkarte / Set Sail Pass",category:"Dokumente & Finanzen",quantity:"1",quantityPerDay:false,quantityPerPerson:true,conditions:{tripTypes:["kreuzfahrt"]},luggage:"handgepaeck",priority:"essential"},
+{id:"reiseunterlagen-reederei",name:"Reiseunterlagen der Reederei inkl. Vouchers",category:"Dokumente & Finanzen",quantity:"1 Set",quantityPerDay:false,quantityPerPerson:false,conditions:{tripTypes:["kreuzfahrt"]},luggage:"handgepaeck",priority:"essential"},
+{id:"dokumentenkopien",name:"Kopien aller Dokumente (digital + Papier)",category:"Dokumente & Finanzen",quantity:"1 Set",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"beides",priority:"essential"},
+{id:"notfallnummern",name:"Notfallnummern (Banken, Kreditkarten, Versicherungen)",category:"Dokumente & Finanzen",quantity:"1 Liste",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"handgepaeck",priority:"recommended"},
+{id:"adac",name:"ADAC-Karte / Auslandsschutzbrief",category:"Dokumente & Finanzen",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"handgepaeck",priority:"nice-to-have"},
+
+// ─── STRAND & POOL ───
+{id:"strandtuch",name:"Strandtuch / Mikrofaser-Handtuch",category:"Strand & Pool",quantity:"1",quantityPerDay:false,quantityPerPerson:true,conditions:{seasons:["sommer"],tripTypes:["strandurlaub","kreuzfahrt"]},luggage:"koffer",priority:"recommended",proTip:"Auf Kreuzfahrtschiffen gibt es Pool-Handt\u00fccher an Bord. F\u00fcr den Strand im Hafen trotzdem ein eigenes mitnehmen."},
+{id:"schnorchelset",name:"Schnorchelset",category:"Strand & Pool",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{seasons:["sommer"],tripTypes:["strandurlaub","kreuzfahrt"],destinations:["mittelmeer","karibik"]},luggage:"koffer",priority:"nice-to-have"},
+{id:"drybag",name:"Dry Bag (wasserdichte Tasche)",category:"Strand & Pool",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{tripTypes:["strandurlaub","natur"]},luggage:"koffer",priority:"recommended"},
+{id:"strandspielzeug",name:"Strandspielzeug (Kinder)",category:"Strand & Pool",quantity:"1 Set",quantityPerDay:false,quantityPerPerson:false,conditions:{seasons:["sommer"],tripTypes:["strandurlaub"],hasKids:true},luggage:"koffer",priority:"recommended"},
+{id:"unterwasserhuelle",name:"Unterwasserh\u00fclle f\u00fcrs Handy",category:"Strand & Pool",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{seasons:["sommer"],tripTypes:["strandurlaub"]},luggage:"koffer",priority:"nice-to-have"},
+
+// ─── KINDER-EXTRAS ───
+{id:"kinderreisepass",name:"Kinderreisepass",category:"Kinder-Extras",quantity:"1 pro Kind",quantityPerDay:false,quantityPerPerson:false,conditions:{hasKids:true},luggage:"handgepaeck",priority:"essential"},
+{id:"kindersonnencreme",name:"Kindersonnencreme LSF 50+",category:"Kinder-Extras",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{hasKids:true,seasons:["sommer"]},luggage:"koffer",priority:"essential"},
+{id:"kinder-fiebersaft",name:"Kinder-Fiebersaft / Paracetamol-Z\u00e4pfchen",category:"Kinder-Extras",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{hasKids:true},luggage:"koffer",priority:"essential",proTip:"Fiebersaft und Z\u00e4pfchen in altersgerechter Dosierung \u2013 Tabletten sind f\u00fcr kleine Kinder ungeeignet."},
+{id:"kinder-ibuprofen",name:"Kinder-Ibuprofen-Saft",category:"Kinder-Extras",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{hasKids:true},luggage:"koffer",priority:"essential"},
+{id:"kinder-durchfall",name:"Kinder-Durchfallmittel (Perenterol junior)",category:"Kinder-Extras",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{hasKids:true},luggage:"koffer",priority:"essential"},
+{id:"kinder-uebelkeit",name:"Kinder-Mittel gegen \u00dcbelkeit (Vomex A Sirup)",category:"Kinder-Extras",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{hasKids:true},luggage:"koffer",priority:"recommended"},
+{id:"kinderpflaster",name:"Kinderpflaster (wasserfest, mit Motiven)",category:"Kinder-Extras",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{hasKids:true},luggage:"koffer",priority:"essential"},
+{id:"kinder-insektenschutz",name:"Kinder-Insektenschutz (Autan Junior)",category:"Kinder-Extras",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{hasKids:true,seasons:["sommer"],destinations:["karibik","asien"]},luggage:"koffer",priority:"recommended"},
+{id:"kinder-aftersun",name:"Kinder-After-Sun-Lotion",category:"Kinder-Extras",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{hasKids:true,seasons:["sommer"]},luggage:"koffer",priority:"recommended"},
+{id:"kinder-augentropfen",name:"Kinder-Augentropfen (Euphrasia / Wala)",category:"Kinder-Extras",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{hasKids:true},luggage:"koffer",priority:"nice-to-have"},
+{id:"kuscheltier",name:"Lieblingskuscheltier",category:"Kinder-Extras",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{hasKids:true},luggage:"handgepaeck",priority:"essential",proTip:"Das Kuscheltier IMMER ins Handgep\u00e4ck. Wenn der Koffer verloren geht, ist DAS der wahre Notfall."},
+{id:"kinder-beschaeftigung",name:"Besch\u00e4ftigung f\u00fcr Flug/Fahrt (Malbuch, Sticker, Tablet)",category:"Kinder-Extras",quantity:"1 Set",quantityPerDay:false,quantityPerPerson:false,conditions:{hasKids:true},luggage:"handgepaeck",priority:"essential"},
+{id:"kinder-snacks",name:"Snacks f\u00fcr unterwegs",category:"Kinder-Extras",quantity:"1 Set",quantityPerDay:false,quantityPerPerson:false,conditions:{hasKids:true},luggage:"handgepaeck",priority:"recommended"},
+{id:"kinder-trinkflasche",name:"Trinkflasche (leer f\u00fcr nach der Sicherheitskontrolle)",category:"Kinder-Extras",quantity:"1 pro Kind",quantityPerDay:false,quantityPerPerson:false,conditions:{hasKids:true},luggage:"handgepaeck",priority:"recommended"},
+{id:"kinder-wechselkleidung",name:"Wechselkleidung im Handgep\u00e4ck",category:"Kinder-Extras",quantity:"1 Set pro Kind",quantityPerDay:false,quantityPerPerson:false,conditions:{hasKids:true},luggage:"handgepaeck",priority:"essential"},
+{id:"kinderkopfhoerer",name:"Kinderkopfh\u00f6rer (lautst\u00e4rkebegrenzt)",category:"Kinder-Extras",quantity:"1 pro Kind",quantityPerDay:false,quantityPerPerson:false,conditions:{hasKids:true},luggage:"handgepaeck",priority:"recommended"},
+{id:"buggy",name:"Buggy / Reisebuggy (falls Kleinkind)",category:"Kinder-Extras",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{hasKids:true,kidsAge:["unter4"]},luggage:"handgepaeck",priority:"recommended",proTip:"Kompakter Reisebuggy ist bis 3-4 Jahre auf Kreuzfahrten extrem praktisch, besonders in H\u00e4fen."},
+{id:"schwimmwindeln",name:"Schwimmwindeln",category:"Kinder-Extras",quantity:"1 Packung",quantityPerDay:false,quantityPerPerson:false,conditions:{hasKids:true,seasons:["sommer"],kidsAge:["unter4"]},luggage:"koffer",priority:"recommended",proTip:"Pflicht am Pool auf Kreuzfahrtschiffen f\u00fcr Kinder, die noch keine regul\u00e4re Badehose tragen."},
+{id:"schwimmfluegel",name:"Schwimmfl\u00fcgel / Schwimmhilfe",category:"Kinder-Extras",quantity:"1 pro Kind",quantityPerDay:false,quantityPerPerson:false,conditions:{hasKids:true,seasons:["sommer"],tripTypes:["kreuzfahrt","strandurlaub"]},luggage:"koffer",priority:"essential"},
+{id:"nachtlicht",name:"Nachtlicht (klein)",category:"Kinder-Extras",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{hasKids:true},luggage:"koffer",priority:"nice-to-have"},
+
+// ─── KREUZFAHRT-SPEZIAL ───
+{id:"magnethaken",name:"Magnetische Haken f\u00fcr die Kabinenwand",category:"Kreuzfahrt-Spezial",quantity:"3-5",quantityPerDay:false,quantityPerPerson:false,conditions:{tripTypes:["kreuzfahrt"]},luggage:"koffer",priority:"recommended",proTip:"Die Kabinenw\u00e4nde sind magnetisch! Haken zum Aufh\u00e4ngen von Jacken, Taschen und Schuhen sparen enorm Platz."},
+{id:"lanyard",name:"Lanyard / Schl\u00fcsselband f\u00fcr Bordkarte",category:"Kreuzfahrt-Spezial",quantity:"1 pro Person",quantityPerDay:false,quantityPerPerson:false,conditions:{tripTypes:["kreuzfahrt"]},luggage:"koffer",priority:"recommended",proTip:"Manche Reedereien nutzen noch physische Bordkarten. Ein Lanyard h\u00e4lt die H\u00e4nde frei."},
+{id:"tagesrucksack",name:"Kleiner Tagesrucksack f\u00fcr Landausfl\u00fcge",category:"Kreuzfahrt-Spezial",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{tripTypes:["kreuzfahrt"]},luggage:"koffer",priority:"essential"},
+{id:"einkaufstasche",name:"Faltbare Einkaufstasche",category:"Kreuzfahrt-Spezial",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{tripTypes:["kreuzfahrt"]},luggage:"koffer",priority:"nice-to-have"},
+{id:"fernglas",name:"Fernglas",category:"Kreuzfahrt-Spezial",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{tripTypes:["kreuzfahrt","natur"]},luggage:"koffer",priority:"nice-to-have",proTip:"F\u00fcr Ein-/Ausfahrt in H\u00e4fen und Wal-/Delfinbeobachtung vom Deck fantastisch."},
+{id:"trinkflasche",name:"Wiederverwendbare Trinkflasche",category:"Kreuzfahrt-Spezial",quantity:"1 pro Person",quantityPerDay:false,quantityPerPerson:false,conditions:{tripTypes:["kreuzfahrt"]},luggage:"koffer",priority:"recommended",proTip:"Wasser aus dem Buffet-Bereich abf\u00fcllen spart t\u00e4glich Geld f\u00fcr Getr\u00e4nke."},
+{id:"waeschenetz",name:"W\u00e4schenetz / W\u00e4schebeutel",category:"Kreuzfahrt-Spezial",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{tripTypes:["kreuzfahrt"]},luggage:"koffer",priority:"recommended",proTip:"Trennt saubere und getragene Kleidung in der engen Kabine."},
+{id:"waescheklammern",name:"W\u00e4scheklammern",category:"Kreuzfahrt-Spezial",quantity:"5-10",quantityPerDay:false,quantityPerPerson:false,conditions:{tripTypes:["kreuzfahrt"]},luggage:"koffer",priority:"recommended",proTip:"Halten das Handtuch auf dem Balkon fest, den Duschvorhang auf Abstand und die Vorh\u00e4nge bei Schaukeln geschlossen. Multitalent!"},
+{id:"strandtuchklammern",name:"Strandtuchklammern",category:"Kreuzfahrt-Spezial",quantity:"2",quantityPerDay:false,quantityPerPerson:false,conditions:{tripTypes:["kreuzfahrt"]},luggage:"koffer",priority:"nice-to-have"},
+{id:"kofferwaage",name:"Kofferwaage",category:"Kreuzfahrt-Spezial",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"recommended"},
+{id:"textmarker",name:"Textmarker (f\u00fcr Bordprogramm)",category:"Kreuzfahrt-Spezial",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{tripTypes:["kreuzfahrt"]},luggage:"koffer",priority:"recommended",proTip:"Das Tagesprogramm an Bord ist oft mehrere Seiten lang. Mit Textmarker markierst du dir die Highlights."},
+{id:"ducttape",name:"Duct Tape / Gewebeband",category:"Kreuzfahrt-Spezial",quantity:"1 Rolle",quantityPerDay:false,quantityPerPerson:false,conditions:{tripTypes:["kreuzfahrt"]},luggage:"koffer",priority:"nice-to-have",proTip:"Universaltalent: Koffer verkleben, klappernde Schrankt\u00fcren bei Seegang fixieren, Kabel b\u00fcndeln."},
+{id:"plastiktueten",name:"Plastikt\u00fcten (f\u00fcr nasses Zeug)",category:"Kreuzfahrt-Spezial",quantity:"3-5",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"recommended"},
+{id:"aida-chip",name:"AIDA Chip-Armband (falls vorhanden)",category:"Kreuzfahrt-Spezial",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{tripTypes:["kreuzfahrt"]},luggage:"koffer",priority:"nice-to-have"},
+
+// ─── HANDGEPÄCK-ESSENTIALS ───
+{id:"reiseorganizer",name:"Reiseunterlagen-Organizer",category:"Handgep\u00e4ck-Essentials",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"handgepaeck",priority:"recommended",proTip:"Alle Unterlagen griffbereit in einer Mappe."},
+{id:"geldguertel",name:"Geldg\u00fcrtel mit RFID-Blocker",category:"Handgep\u00e4ck-Essentials",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"handgepaeck",priority:"recommended",proTip:"Versteckt tragbar, auch f\u00fcr Dokumente und Handy. Ausweise und Zahlungsmittel IMMER getrennt aufbewahren!"},
+{id:"kugelschreiber",name:"Kugelschreiber",category:"Handgep\u00e4ck-Essentials",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"handgepaeck",priority:"essential",proTip:"Klingt banal, spart aber Stress im Flugzeug wenn Einreiseformulare verteilt werden."},
+{id:"zipperbeutel",name:"Transparenter Zipper-Beutel f\u00fcr Fl\u00fcssigkeiten (1 Liter)",category:"Handgep\u00e4ck-Essentials",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"handgepaeck",priority:"essential"},
+{id:"ohrstoepsel",name:"Ohrst\u00f6psel / Ohropax + Schlafmaske",category:"Handgep\u00e4ck-Essentials",quantity:"1 Set",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"handgepaeck",priority:"recommended"},
+{id:"nackenkissen",name:"Reise-Nackenkissen",category:"Handgep\u00e4ck-Essentials",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"handgepaeck",priority:"nice-to-have"},
+{id:"kaugummi",name:"Kaugummi / Bonbons (Druckausgleich Flug)",category:"Handgep\u00e4ck-Essentials",quantity:"1 Packung",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"handgepaeck",priority:"nice-to-have"},
+{id:"snacks",name:"Snacks & Getr\u00e4nke f\u00fcr die Anreise",category:"Handgep\u00e4ck-Essentials",quantity:"1 Set",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"handgepaeck",priority:"recommended"},
+{id:"wechsel-tshirt",name:"Wechsel-T-Shirt",category:"Handgep\u00e4ck-Essentials",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"handgepaeck",priority:"recommended"},
+{id:"reisefuehrer",name:"Reisef\u00fchrer / E-Book-Reader / Zeitschrift",category:"Handgep\u00e4ck-Essentials",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"handgepaeck",priority:"nice-to-have"},
+{id:"brille",name:"Brille / Lesebrille / Brillenetui (falls n\u00f6tig)",category:"Handgep\u00e4ck-Essentials",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"handgepaeck",priority:"recommended"},
+{id:"kontaktlinsen",name:"Kontaktlinsen + Kontaktlinsenfl\u00fcssigkeit (falls n\u00f6tig)",category:"Handgep\u00e4ck-Essentials",quantity:"nach Bedarf",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"handgepaeck",priority:"recommended"},
+{id:"taschentuecher",name:"Taschent\u00fccher",category:"Handgep\u00e4ck-Essentials",quantity:"1 Packung",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"handgepaeck",priority:"recommended"},
+
+// ─── SONSTIGES & PRAKTISCHES ───
+{id:"themenabend",name:"(Ver-)Kleidung f\u00fcr Themenabende (White Nights, Alpengl\u00fchen etc.)",category:"Sonstiges & Praktisches",quantity:"nach Bedarf",quantityPerDay:false,quantityPerPerson:false,conditions:{tripTypes:["kreuzfahrt"]},luggage:"koffer",priority:"nice-to-have"},
+{id:"landausfluege-zubehoer",name:"Zubeh\u00f6r f\u00fcr Landausfl\u00fcge (Schnorchelzeug, Radkleidung etc.)",category:"Sonstiges & Praktisches",quantity:"nach Bedarf",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"nice-to-have"},
+{id:"naehset",name:"Reisen\u00e4hset / Sicherheitsnadeln",category:"Sonstiges & Praktisches",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"nice-to-have"},
+{id:"fitnesstracker",name:"Fitnesstracker / Smartwatch",category:"Sonstiges & Praktisches",quantity:"1",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"handgepaeck",priority:"nice-to-have"},
+{id:"reiseflaschen",name:"Reiseflaschen zum selbst Bef\u00fcllen",category:"Sonstiges & Praktisches",quantity:"1 Set",quantityPerDay:false,quantityPerPerson:false,conditions:{},luggage:"koffer",priority:"recommended",proTip:"Eigenes Duschgel, Shampoo und Conditioner in kleine Reiseflaschen umf\u00fcllen \u2013 spart Platz und Gewicht."}
+];
+
+/* ===================================================================
+   CATEGORY CONFIG
+   =================================================================== */
+const CATEGORIES=[
+  {name:"Kleidung",icon:"\uD83D\uDC55"},
+  {name:"Schuhe & Accessoires",icon:"\uD83D\uDC5F"},
+  {name:"Kulturbeutel & Hygiene",icon:"\uD83E\uDDF4"},
+  {name:"Reiseapotheke",icon:"\uD83D\uDC8A"},
+  {name:"Technik & Gadgets",icon:"\uD83D\uDD0C"},
+  {name:"Dokumente & Finanzen",icon:"\uD83D\uDCC4"},
+  {name:"Strand & Pool",icon:"\uD83C\uDFD6\uFE0F"},
+  {name:"Kinder-Extras",icon:"\uD83E\uDDF8"},
+  {name:"Kreuzfahrt-Spezial",icon:"\u2693"},
+  {name:"Handgep\u00e4ck-Essentials",icon:"\uD83C\uDF92"},
+  {name:"Sonstiges & Praktisches",icon:"\uD83E\uDDF0"}
+];
+
+/* ===================================================================
+   TIPS LINKS
+   =================================================================== */
+const TIPS_LINKS={
+  kreuzfahrt:[
+    {text:"Die ultimative Koffer-Packliste f\u00fcr Kreuzfahrer",url:"https://fernwehblog.net/koffer-packliste-kreuzfahrt/",icon:"\uD83E\uDDF3"},
+    {text:"Reiseapotheke: Unverzichtbare Medikamente",url:"https://fernwehblog.net/reiseapotheke/",icon:"\uD83D\uDC8A"},
+    {text:"Seekrankheit vorbeugen \u2013 Was wirklich hilft",url:"https://fernwehblog.net/seekrankheit-kreuzfahrt/",icon:"\uD83C\uDF0A"},
+    {text:"Kreuzfahrt-Tipps f\u00fcr Anf\u00e4nger und Profis",url:"https://fernwehblog.net/kreuzfahrt-tipps/",icon:"\uD83D\uDCA1"}
+  ],
+  strandurlaub:[
+    {text:"Die ultimative Koffer-Packliste",url:"https://fernwehblog.net/koffer-packliste-kreuzfahrt/",icon:"\uD83E\uDDF3"},
+    {text:"Reiseapotheke f\u00fcr den Urlaub",url:"https://fernwehblog.net/reiseapotheke/",icon:"\uD83D\uDC8A"},
+    {text:"Den richtigen Reisekoffer finden",url:"https://fernwehblog.net/reisekoffer-hartschalenkoffer-weichschalenkoffer/",icon:"\uD83E\uDDF3"},
+    {text:"Packliste erstellen mit KI",url:"https://fernwehblog.net/reiseplanung-mit-ki-packliste/",icon:"\uD83E\uDD16"}
+  ],
+  staedtereise:[
+    {text:"St\u00e4dtereisen Europa \u2013 Tipps & Inspiration",url:"https://fernwehblog.net/staedtereisen-europa-tipps-staedtetrips/",icon:"\uD83C\uDFDB\uFE0F"},
+    {text:"Reise-Apps die du kennen musst",url:"https://fernwehblog.net/reise-apps-smartphone/",icon:"\uD83D\uDCF1"},
+    {text:"Reiseapotheke f\u00fcr unterwegs",url:"https://fernwehblog.net/reiseapotheke/",icon:"\uD83D\uDC8A"},
+    {text:"Reise-Gadgets: Must-Haves f\u00fcr unterwegs",url:"https://fernwehblog.net/reise-gadgets-kreuzfahrt-must-haves-amazon/",icon:"\uD83D\uDD0C"}
+  ],
+  familienurlaub:[
+    {text:"Kreuzfahrt mit Kindern \u2013 Der gro\u00dfe Ratgeber",url:"https://fernwehblog.net/kreuzfahrt-mit-kindern/",icon:"\uD83D\uDC76"},
+    {text:"Reiseapotheke f\u00fcr Familien",url:"https://fernwehblog.net/reiseapotheke/",icon:"\uD83D\uDC8A"},
+    {text:"Auslandskrankenversicherung \u2013 Was wichtig ist",url:"https://fernwehblog.net/auslandskrankenversicherung-kreuzfahrt/",icon:"\uD83D\uDEE1\uFE0F"},
+    {text:"Packlisten-Guide mit KI erstellen",url:"https://fernwehblog.net/reiseplanung-mit-ki-packliste/",icon:"\uD83E\uDD16"}
+  ],
+  natur:[
+    {text:"Natur & Tierwelt erleben planen",url:"https://fernwehblog.net/reiseplanung-mit-ki-natur-tierwelt/",icon:"\uD83C\uDF3F"},
+    {text:"Reiseapotheke f\u00fcr Abenteurer",url:"https://fernwehblog.net/reiseapotheke/",icon:"\uD83D\uDC8A"},
+    {text:"Die beste Reisekamera finden",url:"https://fernwehblog.net/reisekamera-sony-rx100-vii/",icon:"\uD83D\uDCF7"},
+    {text:"Visa & Einreise recherchieren",url:"https://fernwehblog.net/reiseplanung-mit-ki-visa-einreise/",icon:"\uD83D\uDDFA\uFE0F"}
+  ]
+};
+
+/* ===================================================================
+   APP STATE & LOGIC
+   =================================================================== */
+let state={
+  step:1,
+  config:{packingFor:null,tripType:null,destination:null,season:null,duration:null,kids:null},
+  checked:{},
+  filter:"alle",
+  search:"",
+  openCategories:{},
+  openTips:{}
+};
+
+function getDays(d){
+  const m={"3-5":4,"6-10":8,"11-14":12,"15+":17};
+  return m[d]||8;
+}
+function getPersons(c){return c.packingFor==="paar"?2:1;}
+
+function matchItem(item,cfg){
+  const c=item.conditions;
+  if(c.seasons&&c.seasons.length&&!c.seasons.includes(cfg.season)){
+    if(!c.destinations||!c.destinations.includes(cfg.destination)) return false;
+  }
+  if(c.tripTypes&&c.tripTypes.length&&!c.tripTypes.includes(cfg.tripType)) return false;
+  if(c.gender&&c.gender.length){
+    if(cfg.packingFor==="paar"){/* show both */}
+    else if(!c.gender.includes(cfg.packingFor)) return false;
+  }
+  if(c.hasKids&&cfg.kids==="nein") return false;
+  if(c.destinations&&c.destinations.length&&!c.destinations.includes(cfg.destination)){
+    if(!c.seasons||c.seasons.length===0) return false;
+    /* if seasons also set and matched, still show */
+  }
+  if(c.kidsAge&&c.kidsAge.length){
+    if(!c.kidsAge.includes(cfg.kids)) return false;
+  }
+  return true;
+}
+
+function calcQty(item,cfg){
+  const q=item.quantity;
+  const num=parseInt(q)||0;
+  if(!num) return q;
+  const days=getDays(cfg.duration);
+  const persons=getPersons(cfg);
+  let result=num;
+  if(item.quantityPerDay){
+    if(q.includes("pro 2 Tage")){result=Math.ceil(days/2);}
+    else if(q.includes("Reserve")){result=days+2;}
+    else{result=days;}
+  }
+  if(item.quantityPerPerson) result*=persons;
+  const unit=q.replace(/[\d\-]+/,"").replace(/pro Tag|pro 2 Tage|pro Person|pro Kind|\+ 2 Reserve/gi,"").trim();
+  return result+(unit?" "+unit:"");
+}
+
+function getGenderLabel(item){
+  if(!item.conditions.gender||!item.conditions.gender.length) return "";
+  if(item.conditions.gender.includes("frau")&&!item.conditions.gender.includes("mann")) return " \u2640";
+  if(item.conditions.gender.includes("mann")&&!item.conditions.gender.includes("frau")) return " \u2642";
+  return "";
+}
+
+/* ===================================================================
+   RENDER
+   =================================================================== */
+function render(){
+  const app=document.getElementById("app");
+  if(state.step===1){
+    app.innerHTML=renderConfigurator();
+    bindConfigurator();
+  } else {
+    app.innerHTML=renderResult();
+    bindResult();
+  }
+}
+
+function renderConfigurator(){
+  const c=state.config;
+  const groups=[
+    {key:"packingFor",label:"Ich packe f\u00fcr",options:[
+      {value:"frau",icon:"\uD83D\uDC69",text:"Frau"},{value:"mann",icon:"\uD83D\uDC68",text:"Mann"},{value:"paar",icon:"\uD83D\uDC6B",text:"Paar"}
+    ]},
+    {key:"tripType",label:"Reiseart",options:[
+      {value:"kreuzfahrt",icon:"\uD83D\uDEA2",text:"Kreuzfahrt"},{value:"strandurlaub",icon:"\u26F1\uFE0F",text:"Strandurlaub"},
+      {value:"staedtereise",icon:"\uD83C\uDFDB\uFE0F",text:"St\u00e4dtereise"},{value:"familienurlaub",icon:"\uD83D\uDC76",text:"Familienurlaub"},
+      {value:"natur",icon:"\u26F0\uFE0F",text:"Natur & Abenteuer"}
+    ]},
+    {key:"destination",label:"Reiseziel",options:[
+      {value:"mittelmeer",icon:"\u2600\uFE0F",text:"Mittelmeer"},{value:"karibik",icon:"\uD83C\uDF34",text:"Karibik"},
+      {value:"nordeuropa",icon:"\u2744\uFE0F",text:"Nordeuropa"},{value:"asien",icon:"\uD83C\uDF0F",text:"Asien"},
+      {value:"fernreise",icon:"\u2708\uFE0F",text:"Fernreise"}
+    ]},
+    {key:"season",label:"Jahreszeit",options:[
+      {value:"sommer",icon:"\u2600\uFE0F",text:"Sommer (Mai\u2013Sep)"},{value:"winter",icon:"\u2744\uFE0F",text:"Winter (Nov\u2013Feb)"},
+      {value:"uebergang",icon:"\u26C5",text:"\u00dcbergang (M\u00e4r\u2013Apr, Okt)"}
+    ]},
+    {key:"duration",label:"Reisedauer",options:[
+      {value:"3-5",icon:"\uD83D\uDCC5",text:"3\u20135 Tage"},{value:"6-10",icon:"\uD83D\uDCC5",text:"6\u201310 Tage"},
+      {value:"11-14",icon:"\uD83D\uDCC5",text:"11\u201314 Tage"},{value:"15+",icon:"\uD83D\uDCC5",text:"15+ Tage"}
+    ]},
+    {key:"kids",label:"Kinder dabei?",options:[
+      {value:"nein",icon:"\u2716",text:"Nein"},{value:"unter4",icon:"\uD83D\uDC76",text:"Ja, unter 4"},
+      {value:"4-8",icon:"\uD83E\uDDD2",text:"Ja, 4\u20138 Jahre"},{value:"ueber8",icon:"\uD83E\uDDD1",text:"Ja, \u00fcber 8"},
+      {value:"mehrere",icon:"\uD83D\uDC68\u200D\uD83D\uDC69\u200D\uD83D\uDC67\u200D\uD83D\uDC66",text:"Mehrere Altersgruppen"}
+    ]}
+  ];
+  const allSelected=groups.every(g=>c[g.key]!==null);
+  let html=`<div class="plg-section plg-config"><div class="plg-container">
+    <h2>Sag mir, wohin es geht</h2>
+    <p class="plg-config-sub">W\u00e4hle in jeder Kategorie eine Option, um deine pers\u00f6nliche Packliste zu erstellen.</p>`;
+  groups.forEach(g=>{
+    html+=`<div class="plg-group"><span class="plg-group-label">${g.label}</span><div class="plg-options">`;
+    g.options.forEach(o=>{
+      const sel=c[g.key]===o.value?"selected":"";
+      html+=`<div class="plg-option ${sel}" data-group="${g.key}" data-value="${o.value}">
+        <span class="plg-icon">${o.icon}</span>${o.text}</div>`;
+    });
+    html+=`</div></div>`;
+  });
+  html+=`<div class="plg-cta-wrap"><button class="plg-cta" id="plg-generate" ${allSelected?"":' disabled'}>Meine Packliste erstellen</button></div>`;
+  html+=`</div></div>`;
+  return html;
+}
+
+function renderResult(){
+  const cfg=state.config;
+  const days=getDays(cfg.duration);
+  const filtered=ITEMS.filter(i=>matchItem(i,cfg));
+  const searched=state.search?filtered.filter(i=>i.name.toLowerCase().includes(state.search.toLowerCase())):filtered;
+  let displayed=searched;
+  if(state.filter==="essential") displayed=searched.filter(i=>i.priority==="essential");
+  if(state.filter==="handgepaeck") displayed=searched.filter(i=>i.luggage==="handgepaeck"||i.luggage==="beides");
+  if(state.filter==="koffer") displayed=searched.filter(i=>i.luggage==="koffer"||i.luggage==="beides");
+
+  const totalItems=displayed.length;
+  const checkedCount=displayed.filter(i=>state.checked[i.id]).length;
+  const pct=totalItems?Math.round(checkedCount/totalItems*100):0;
+
+  const labels={packingFor:{frau:"\uD83D\uDC69 Frau",mann:"\uD83D\uDC68 Mann",paar:"\uD83D\uDC6B Paar"},
+    tripType:{kreuzfahrt:"\uD83D\uDEA2 Kreuzfahrt",strandurlaub:"\u26F1\uFE0F Strandurlaub",staedtereise:"\uD83C\uDFDB\uFE0F St\u00e4dtereise",familienurlaub:"\uD83D\uDC76 Familienurlaub",natur:"\u26F0\uFE0F Natur"},
+    destination:{mittelmeer:"\u2600\uFE0F Mittelmeer",karibik:"\uD83C\uDF34 Karibik",nordeuropa:"\u2744\uFE0F Nordeuropa",asien:"\uD83C\uDF0F Asien",fernreise:"\u2708\uFE0F Fernreise"},
+    season:{sommer:"\u2600\uFE0F Sommer",winter:"\u2744\uFE0F Winter",uebergang:"\u26C5 \u00dcbergang"}};
+
+  let html=`<div class="plg-print-header">Meine Packliste \u2013 erstellt mit fernwehblog.net</div>`;
+  html+=`<div class="plg-section plg-result"><div class="plg-container">`;
+  // Badges
+  html+=`<div class="plg-badges">
+    <span class="plg-badge">${labels.packingFor[cfg.packingFor]}</span>
+    <span class="plg-badge">${labels.tripType[cfg.tripType]}</span>
+    <span class="plg-badge">${labels.destination[cfg.destination]}</span>
+    <span class="plg-badge">${labels.season[cfg.season]}</span>
+    <span class="plg-badge">\uD83D\uDCC5 ${cfg.duration} Tage</span>
+    ${cfg.kids!=="nein"?`<span class="plg-badge">\uD83D\uDC76 Kinder: ${cfg.kids}</span>`:""}
+  </div>`;
+  // Progress
+  html+=`<div class="plg-progress-wrap">
+    <div class="plg-progress-text">${checkedCount} von ${totalItems} Items eingepackt (${pct}%)</div>
+    <div class="plg-progress-bar"><div class="plg-progress-fill" style="width:${pct}%"></div></div>
+  </div>`;
+  // Toolbar
+  html+=`<div class="plg-toolbar">
+    <button class="plg-filter-btn ${state.filter==="alle"?"active":""}" data-filter="alle">Alle</button>
+    <button class="plg-filter-btn ${state.filter==="essential"?"active":""}" data-filter="essential">Nur Essential</button>
+    <button class="plg-filter-btn ${state.filter==="handgepaeck"?"active":""}" data-filter="handgepaeck">Nur Handgep\u00e4ck</button>
+    <button class="plg-filter-btn ${state.filter==="koffer"?"active":""}" data-filter="koffer">Nur Koffer</button>
+    <input type="text" class="plg-search" id="plg-search" placeholder="Item suchen\u2026" value="${escHtml(state.search)}">
+  </div>`;
+  // Categories
+  CATEGORIES.forEach(cat=>{
+    const catItems=displayed.filter(i=>i.category===cat.name);
+    if(!catItems.length) return;
+    const isOpen=state.openCategories[cat.name];
+    html+=`<div class="plg-category${isOpen?" open":""}">
+      <div class="plg-cat-header" data-cat="${escHtml(cat.name)}">
+        <span class="plg-cat-icon">${cat.icon}</span>
+        <span class="plg-cat-name">${cat.name}</span>
+        <span class="plg-cat-count">${catItems.length}</span>
+        <span class="plg-cat-toggle">\u25BC</span>
+      </div>
+      <div class="plg-cat-body">
+        <div class="plg-cat-actions">
+          <button data-checkall="${escHtml(cat.name)}">Alles abhaken</button>
+          <button data-uncheckall="${escHtml(cat.name)}">Alle zur\u00fccksetzen</button>
+        </div>`;
+    catItems.forEach(item=>{
+      const ch=state.checked[item.id];
+      const gender=getGenderLabel(item);
+      const qty=calcQty(item,cfg);
+      const luggageLabel=item.luggage==="handgepaeck"?"Handgep\u00e4ck":item.luggage==="beides"?"Beides":"Koffer";
+      const tipOpen=state.openTips[item.id];
+      html+=`<div class="plg-item${ch?" checked":""}">
+        <div class="plg-checkbox${ch?" checked":""}" data-id="${item.id}"></div>
+        <div class="plg-item-content">
+          <div class="plg-priority-dot ${item.priority}"></div>
+          <span class="plg-item-name">${escHtml(item.name)}${gender?`<span class="plg-gender-tag">${gender}</span>`:""}</span>
+          ${item.proTip?`<button class="plg-tip-btn" data-tip="${item.id}" title="Expertentipp">i</button>`:""}
+        </div>
+        <div class="plg-item-meta">
+          <span class="plg-qty">${escHtml(String(qty))}</span>
+          <span class="plg-luggage-badge ${item.luggage}">${luggageLabel}</span>
+        </div>
+      </div>`;
+      if(item.proTip){
+        html+=`<div class="plg-tip${tipOpen?" show":""}" id="tip-${item.id}">${escHtml(item.proTip)}</div>`;
+      }
+    });
+    html+=`</div></div>`;
+  });
+  // Actions
+  html+=`<div class="plg-actions no-print">
+    <button class="plg-btn plg-btn--primary" id="plg-print">\uD83D\uDDA8\uFE0F Als PDF speichern / Drucken</button>
+    <button class="plg-btn plg-btn--outline" id="plg-reset">\u21A9 Neue Liste erstellen</button>
+  </div>`;
+  // Tips
+  const tips=TIPS_LINKS[cfg.tripType];
+  if(tips){
+    html+=`<div class="plg-tips no-print"><h3>Noch mehr Tipps f\u00fcr deine Reisevorbereitung</h3><div class="plg-tips-grid">`;
+    tips.forEach(t=>{
+      html+=`<a href="${t.url}" target="_blank" rel="noopener" class="plg-tip-card"><span class="plg-tc-icon">${t.icon}</span>${escHtml(t.text)}</a>`;
+    });
+    html+=`</div></div>`;
+  }
+  html+=`</div></div>`;
+  return html;
+}
+
+function escHtml(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+
+/* ===================================================================
+   EVENT BINDING
+   =================================================================== */
+function bindConfigurator(){
+  document.querySelectorAll(".plg-option").forEach(el=>{
+    el.addEventListener("click",()=>{
+      const g=el.dataset.group,v=el.dataset.value;
+      state.config[g]=v;
+      render();
+    });
+  });
+  const btn=document.getElementById("plg-generate");
+  if(btn) btn.addEventListener("click",()=>{
+    state.step=2;
+    // open first 3 categories by default
+    CATEGORIES.slice(0,3).forEach(c=>state.openCategories[c.name]=true);
+    render();
+    document.getElementById("app").scrollIntoView({behavior:"smooth"});
+  });
+}
+
+function bindResult(){
+  // Checkboxes
+  document.querySelectorAll(".plg-checkbox").forEach(el=>{
+    el.addEventListener("click",()=>{
+      const id=el.dataset.id;
+      state.checked[id]=!state.checked[id];
+      render();
+    });
+  });
+  // Category toggle
+  document.querySelectorAll(".plg-cat-header").forEach(el=>{
+    el.addEventListener("click",()=>{
+      const cat=el.dataset.cat;
+      state.openCategories[cat]=!state.openCategories[cat];
+      render();
+    });
+  });
+  // Check all / uncheck all
+  document.querySelectorAll("[data-checkall]").forEach(el=>{
+    el.addEventListener("click",e=>{
+      e.stopPropagation();
+      const cat=el.dataset.checkall;
+      ITEMS.filter(i=>i.category===cat&&matchItem(i,state.config)).forEach(i=>state.checked[i.id]=true);
+      render();
+    });
+  });
+  document.querySelectorAll("[data-uncheckall]").forEach(el=>{
+    el.addEventListener("click",e=>{
+      e.stopPropagation();
+      const cat=el.dataset.uncheckall;
+      ITEMS.filter(i=>i.category===cat).forEach(i=>state.checked[i.id]=false);
+      render();
+    });
+  });
+  // Filters
+  document.querySelectorAll(".plg-filter-btn").forEach(el=>{
+    el.addEventListener("click",()=>{
+      state.filter=el.dataset.filter;
+      render();
+    });
+  });
+  // Search
+  const search=document.getElementById("plg-search");
+  if(search){
+    search.addEventListener("input",()=>{
+      state.search=search.value;
+      render();
+      // restore focus
+      const s2=document.getElementById("plg-search");
+      if(s2){s2.focus();s2.selectionStart=s2.selectionEnd=s2.value.length;}
+    });
+  }
+  // Tips toggle
+  document.querySelectorAll(".plg-tip-btn").forEach(el=>{
+    el.addEventListener("click",e=>{
+      e.stopPropagation();
+      const id=el.dataset.tip;
+      state.openTips[id]=!state.openTips[id];
+      const tipEl=document.getElementById("tip-"+id);
+      if(tipEl) tipEl.classList.toggle("show");
+    });
+  });
+  // Print
+  const printBtn=document.getElementById("plg-print");
+  if(printBtn) printBtn.addEventListener("click",()=>{
+    // Open all categories for print
+    CATEGORIES.forEach(c=>state.openCategories[c.name]=true);
+    render();
+    setTimeout(()=>window.print(),100);
+  });
+  // Reset
+  const resetBtn=document.getElementById("plg-reset");
+  if(resetBtn) resetBtn.addEventListener("click",()=>{
+    state.step=1;
+    state.checked={};
+    state.filter="alle";
+    state.search="";
+    state.openCategories={};
+    state.openTips={};
+    render();
+    window.scrollTo({top:0,behavior:"smooth"});
+  });
+}
+
+/* ===================================================================
+   INIT
+   =================================================================== */
+render();
+</script>
+</body>
+</html>
