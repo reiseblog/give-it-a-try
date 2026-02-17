@@ -15,36 +15,36 @@
 /*──────────────────────────────────────────────
   SCOPED RESET & VARIABLES
 ──────────────────────────────────────────────*/
-#cfq-app{background-color:#0b1120;color:#e2e8f0}
+#cfq-app{background-color:#ffffff;color:#1e293b}
 #cfq-app *,#cfq-app *::before,#cfq-app *::after{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 #cfq-app button:focus{outline:none}
 #cfq-app{
-  --cfq-text:#e2e8f0;
-  --cfq-text-2:#8ba4b8;
-  --cfq-text-3:#64748b;
-  --cfq-text-4:#475569;
-  --cfq-text-soft:#cbd5e1;
-  --cfq-accent:#0ea5e9;
-  --cfq-accent-dark:#0284c7;
-  --cfq-accent-text:#38bdf8;
-  --cfq-danger:#f87171;
-  --cfq-bg:#0b1120;
-  --cfq-bg-card:rgba(255,255,255,0.04);
-  --cfq-bg-subtle:rgba(255,255,255,0.03);
-  --cfq-bg-overlay:rgba(255,255,255,0.06);
-  --cfq-border:rgba(255,255,255,0.08);
-  --cfq-border-light:rgba(255,255,255,0.05);
-  --cfq-border-hover:rgba(255,255,255,0.1);
-  --cfq-border-bright:rgba(255,255,255,0.2);
-  --cfq-accent-bg:rgba(14,165,233,0.1);
-  --cfq-accent-bg-s:rgba(14,165,233,0.08);
-  --cfq-accent-bg-w:rgba(14,165,233,0.12);
-  --cfq-accent-bg-a:rgba(14,165,233,0.4);
-  --cfq-accent-border:rgba(14,165,233,0.45);
-  --cfq-accent-border-h:rgba(14,165,233,0.25);
-  --cfq-accent-border-l:rgba(14,165,233,0.2);
-  --cfq-grad:linear-gradient(135deg,#0ea5e9,#0284c7);
-  --cfq-grad-bar:linear-gradient(90deg,#0ea5e9,#38bdf8);
+  --cfq-text:#1e293b;
+  --cfq-text-2:#64748b;
+  --cfq-text-3:#94a3b8;
+  --cfq-text-4:#cbd5e1;
+  --cfq-text-soft:#475569;
+  --cfq-accent:#0284c7;
+  --cfq-accent-dark:#0369a1;
+  --cfq-accent-text:#0284c7;
+  --cfq-danger:#dc2626;
+  --cfq-bg:#ffffff;
+  --cfq-bg-card:#f8fafc;
+  --cfq-bg-subtle:#f1f5f9;
+  --cfq-bg-overlay:#e2e8f0;
+  --cfq-border:#e2e8f0;
+  --cfq-border-light:#f1f5f9;
+  --cfq-border-hover:#cbd5e1;
+  --cfq-border-bright:#94a3b8;
+  --cfq-accent-bg:rgba(2,132,199,0.08);
+  --cfq-accent-bg-s:rgba(2,132,199,0.06);
+  --cfq-accent-bg-w:rgba(2,132,199,0.1);
+  --cfq-accent-bg-a:rgba(2,132,199,0.2);
+  --cfq-accent-border:rgba(2,132,199,0.4);
+  --cfq-accent-border-h:rgba(2,132,199,0.2);
+  --cfq-accent-border-l:rgba(2,132,199,0.15);
+  --cfq-grad:linear-gradient(135deg,#0284c7,#0369a1);
+  --cfq-grad-bar:linear-gradient(90deg,#0284c7,#0ea5e9);
   --cfq-f:'DM Sans',sans-serif;
   --cfq-fh:'Playfair Display',serif;
   font-family:var(--cfq-f);
@@ -55,8 +55,8 @@
   LAYOUT
 ──────────────────────────────────────────────*/
 .cfq-page{
-  min-height:100vh;background-color:#0b1120;background-color:var(--cfq-bg);
-  background-image:radial-gradient(ellipse at 20% 50%,rgba(14,165,233,0.05) 0%,transparent 50%),radial-gradient(ellipse at 80% 20%,rgba(14,165,233,0.03) 0%,transparent 50%);
+  background-color:#ffffff;background-color:var(--cfq-bg);
+  background-image:radial-gradient(ellipse at 20% 50%,rgba(2,132,199,0.04) 0%,transparent 50%),radial-gradient(ellipse at 80% 20%,rgba(2,132,199,0.03) 0%,transparent 50%);
   padding:14px 12px;display:flex;flex-direction:column;align-items:center;
 }
 .cfq-wrap{width:100%;max-width:480px}
@@ -88,10 +88,10 @@
   BUTTONS
 ──────────────────────────────────────────────*/
 .cfq-btn-primary{
-  padding:12px 32px;background-color:#0ea5e9;background-image:linear-gradient(135deg,#0ea5e9,#0284c7);border:none;border-radius:11px;
+  padding:12px 32px;background-color:#0284c7;background-image:linear-gradient(135deg,#0284c7,#0369a1);border:none;border-radius:11px;
   color:#fff;font-size:15px;font-weight:700;font-family:var(--cfq-f);cursor:pointer;transition:all .2s ease;
 }
-.cfq-btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(14,165,233,0.3)}
+.cfq-btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(2,132,199,0.25)}
 .cfq-btn-back{
   flex:0 0 auto;padding:10px 16px;background:var(--cfq-bg-card);
   border:1px solid var(--cfq-border-hover);border-radius:10px;
@@ -102,7 +102,7 @@
   flex:1;padding:10px 18px;border-radius:10px;font-size:13px;font-weight:600;
   font-family:var(--cfq-f);transition:all .15s ease;outline:none;
 }
-.cfq-btn-confirm.cfq-enabled{background-color:#0ea5e9;background-image:linear-gradient(135deg,#0ea5e9,#0284c7);border:none;color:#fff;cursor:pointer}
+.cfq-btn-confirm.cfq-enabled{background-color:#0284c7;background-image:linear-gradient(135deg,#0284c7,#0369a1);border:none;color:#fff;cursor:pointer}
 .cfq-btn-confirm.cfq-disabled{background:var(--cfq-bg-card);border:1px solid var(--cfq-border);color:var(--cfq-text-4);cursor:default}
 .cfq-btn-restart{
   width:100%;padding:10px 18px;background:transparent;
@@ -117,7 +117,7 @@
 .cfq-progress{width:100%;margin-bottom:24px}
 .cfq-progress-info{display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px;color:var(--cfq-text-2)}
 .cfq-progress-track{width:100%;height:6px;background:var(--cfq-border);border-radius:3px;overflow:hidden}
-.cfq-progress-fill{height:100%;background-color:#0ea5e9;background-image:linear-gradient(90deg,#0ea5e9,#38bdf8);border-radius:3px;transition:width .5s cubic-bezier(0.4,0,0.2,1)}
+.cfq-progress-fill{height:100%;background-color:#0284c7;background-image:linear-gradient(90deg,#0284c7,#0ea5e9);border-radius:3px;transition:width .5s cubic-bezier(0.4,0,0.2,1)}
 
 /*──────────────────────────────────────────────
   QUESTION CARD
@@ -139,8 +139,8 @@
   cursor:pointer;text-align:left;color:var(--cfq-text);transition:all .15s ease;
   font-family:var(--cfq-f);outline:none;
 }
-.cfq-option:not(.cfq-active):hover{background:rgba(14,165,233,0.07);border-color:var(--cfq-accent-border-h)}
-.cfq-option.cfq-active{background:rgba(14,165,233,0.14);border-color:var(--cfq-accent-border)}
+.cfq-option:not(.cfq-active):hover{background:rgba(2,132,199,0.06);border-color:var(--cfq-accent-border-h)}
+.cfq-option.cfq-active{background:rgba(2,132,199,0.08);border-color:var(--cfq-accent-border)}
 .cfq-option-label{font-size:14px;font-weight:600;margin-bottom:1px}
 .cfq-option-desc{font-size:12px;color:var(--cfq-text-2)}
 
@@ -177,7 +177,7 @@
 .cfq-match-box{background:var(--cfq-accent-bg-s);border:1px solid var(--cfq-accent-border-l);border-radius:13px;padding:16px;margin-bottom:16px}
 .cfq-match-top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
 .cfq-match-score{
-  width:44px;height:44px;border-radius:11px;background-color:#0ea5e9;background-image:linear-gradient(135deg,#0ea5e9,#0284c7);
+  width:44px;height:44px;border-radius:11px;background-color:#0284c7;background-image:linear-gradient(135deg,#0284c7,#0369a1);
   display:flex;align-items:center;justify-content:center;
   font-size:19px;font-weight:800;color:#fff;
 }
@@ -197,7 +197,7 @@
   WARNING BOX
 ──────────────────────────────────────────────*/
 .cfq-warning{
-  background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.15);
+  background:rgba(220,38,38,0.06);border:1px solid rgba(220,38,38,0.15);
   border-radius:9px;padding:9px 13px;margin-bottom:18px;font-size:12px;color:var(--cfq-danger);
 }
 
@@ -206,11 +206,11 @@
 ──────────────────────────────────────────────*/
 .cfq-cta{
   display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 18px;
-  background-color:#0ea5e9;background-image:linear-gradient(135deg,#0ea5e9,#0284c7);border:none;border-radius:11px;color:#fff;
+  background-color:#0284c7;background-image:linear-gradient(135deg,#0284c7,#0369a1);border:none;border-radius:11px;color:#fff;
   font-size:15px;font-weight:700;font-family:var(--cfq-f);text-decoration:none;
   cursor:pointer;transition:all .2s ease;margin-bottom:18px;
 }
-.cfq-cta:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(14,165,233,0.3);color:#fff}
+.cfq-cta:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(2,132,199,0.25);color:#fff}
 
 /*──────────────────────────────────────────────
   RUNNER-UP CARDS
@@ -253,7 +253,7 @@
 </style>
 </head>
 <body>
-<div id="cfq-app"><noscript><div style="padding:40px;text-align:center;font-family:sans-serif;background:#0b1120;color:#e2e8f0;min-height:100vh;display:flex;align-items:center;justify-content:center"><div><h2 style="margin-bottom:12px">Kreuzfahrt-Finder</h2><p>Bitte aktiviere JavaScript, um den Kreuzfahrt-Finder zu nutzen.</p></div></div></noscript></div>
+<div id="cfq-app"><noscript><div style="padding:40px;text-align:center;font-family:sans-serif;background:#ffffff;color:#1e293b"><div><h2 style="margin-bottom:12px">Kreuzfahrt-Finder</h2><p>Bitte aktiviere JavaScript, um den Kreuzfahrt-Finder zu nutzen.</p></div></div></noscript></div>
 <script>
 (function(){
 'use strict';
