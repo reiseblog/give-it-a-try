@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kreuzfahrt-Finder Quiz | fernwehblog.net</title>
+<meta name="description" content="Finde in 2 Minuten die perfekte Kreuzfahrtlinie – 10 Fragen, 20 Reedereien im Vergleich. Kostenlos und unverbindlich.">
+<meta property="og:title" content="Kreuzfahrt-Finder Quiz | fernwehblog.net">
+<meta property="og:description" content="Finde in 2 Minuten die perfekte Kreuzfahrtlinie – 10 Fragen, 20 Reedereien im Vergleich.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/*──────────────────────────────────────────────
+  SCOPED RESET & VARIABLES
+──────────────────────────────────────────────*/
+#cfq-app *,#cfq-app *::before,#cfq-app *::after{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+#cfq-app button:focus{outline:none}
+#cfq-app{
+  --cfq-text:#e2e8f0;
+  --cfq-text-2:#8ba4b8;
+  --cfq-text-3:#64748b;
+  --cfq-text-4:#475569;
+  --cfq-text-soft:#cbd5e1;
+  --cfq-accent:#0ea5e9;
+  --cfq-accent-dark:#0284c7;
+  --cfq-accent-text:#38bdf8;
+  --cfq-danger:#f87171;
+  --cfq-bg:#0b1120;
+  --cfq-bg-card:rgba(255,255,255,0.04);
+  --cfq-bg-subtle:rgba(255,255,255,0.03);
+  --cfq-bg-overlay:rgba(255,255,255,0.06);
+  --cfq-border:rgba(255,255,255,0.08);
+  --cfq-border-light:rgba(255,255,255,0.05);
+  --cfq-border-hover:rgba(255,255,255,0.1);
+  --cfq-border-bright:rgba(255,255,255,0.2);
+  --cfq-accent-bg:rgba(14,165,233,0.1);
+  --cfq-accent-bg-s:rgba(14,165,233,0.08);
+  --cfq-accent-bg-w:rgba(14,165,233,0.12);
+  --cfq-accent-bg-a:rgba(14,165,233,0.4);
+  --cfq-accent-border:rgba(14,165,233,0.45);
+  --cfq-accent-border-h:rgba(14,165,233,0.25);
+  --cfq-accent-border-l:rgba(14,165,233,0.2);
+  --cfq-grad:linear-gradient(135deg,#0ea5e9,#0284c7);
+  --cfq-grad-bar:linear-gradient(90deg,#0ea5e9,#38bdf8);
+  --cfq-f:'DM Sans',sans-serif;
+  --cfq-fh:'Playfair Display',serif;
+  font-family:var(--cfq-f);
+  line-height:1.5;
+}
+
+/*──────────────────────────────────────────────
+  LAYOUT
+──────────────────────────────────────────────*/
+.cfq-page{
+  min-height:100vh;background:var(--cfq-bg);
+  background-image:radial-gradient(ellipse at 20% 50%,rgba(14,165,233,0.05) 0%,transparent 50%),radial-gradient(ellipse at 80% 20%,rgba(14,165,233,0.03) 0%,transparent 50%);
+  padding:14px 12px;display:flex;flex-direction:column;align-items:center;
+}
+.cfq-wrap{width:100%;max-width:480px}
+
+/*──────────────────────────────────────────────
+  HEADER / BADGE
+──────────────────────────────────────────────*/
+.cfq-header{text-align:center;padding-top:4px}
+.cfq-header.cfq-compact{margin-bottom:12px}
+.cfq-header:not(.cfq-compact){margin-bottom:20px}
+.cfq-badge{
+  display:inline-flex;align-items:center;gap:6px;padding:4px 11px;
+  background:var(--cfq-accent-bg);border:1px solid var(--cfq-accent-border-l);border-radius:16px;
+}
+.cfq-header.cfq-compact .cfq-badge{margin-bottom:6px}
+.cfq-header:not(.cfq-compact) .cfq-badge{margin-bottom:10px}
+.cfq-badge-icon{font-size:14px}
+.cfq-badge-text{font-size:10px;font-weight:700;color:var(--cfq-accent-text);text-transform:uppercase;letter-spacing:1.5px}
+
+/*──────────────────────────────────────────────
+  START SCREEN
+──────────────────────────────────────────────*/
+.cfq-start{animation:cfq-fadeUp .5s ease-out}
+.cfq-start-title{font-family:var(--cfq-fh);font-size:26px;font-weight:800;color:var(--cfq-text);margin:0 0 7px;line-height:1.2}
+.cfq-start-sub{font-size:14px;color:var(--cfq-text-2);margin:0 0 20px;line-height:1.5;max-width:360px;margin-left:auto;margin-right:auto}
+.cfq-start-meta{margin-top:12px;display:flex;justify-content:center;gap:12px;font-size:11px;color:var(--cfq-text-3)}
+
+/*──────────────────────────────────────────────
+  BUTTONS
+──────────────────────────────────────────────*/
+.cfq-btn-primary{
+  padding:12px 32px;background:var(--cfq-grad);border:none;border-radius:11px;
+  color:#fff;font-size:15px;font-weight:700;font-family:var(--cfq-f);cursor:pointer;transition:all .2s ease;
+}
+.cfq-btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(14,165,233,0.3)}
+.cfq-btn-back{
+  flex:0 0 auto;padding:10px 16px;background:var(--cfq-bg-card);
+  border:1px solid var(--cfq-border-hover);border-radius:10px;
+  color:var(--cfq-text-2);font-size:13px;font-family:var(--cfq-f);cursor:pointer;transition:all .15s ease;
+}
+.cfq-btn-back:hover{border-color:var(--cfq-border-bright);color:var(--cfq-text)}
+.cfq-btn-confirm{
+  flex:1;padding:10px 18px;border-radius:10px;font-size:13px;font-weight:600;
+  font-family:var(--cfq-f);transition:all .15s ease;outline:none;
+}
+.cfq-btn-confirm.cfq-enabled{background:var(--cfq-grad);border:none;color:#fff;cursor:pointer}
+.cfq-btn-confirm.cfq-disabled{background:var(--cfq-bg-card);border:1px solid var(--cfq-border);color:var(--cfq-text-4);cursor:default}
+.cfq-btn-restart{
+  width:100%;padding:10px 18px;background:transparent;
+  border:1px solid var(--cfq-border-hover);border-radius:9px;
+  color:var(--cfq-text-2);font-size:13px;font-family:var(--cfq-f);cursor:pointer;outline:none;transition:all .15s ease;
+}
+.cfq-btn-restart:hover{border-color:var(--cfq-border-bright);color:var(--cfq-text)}
+
+/*──────────────────────────────────────────────
+  PROGRESS BAR
+──────────────────────────────────────────────*/
+.cfq-progress{width:100%;margin-bottom:24px}
+.cfq-progress-info{display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px;color:var(--cfq-text-2)}
+.cfq-progress-track{width:100%;height:6px;background:var(--cfq-border);border-radius:3px;overflow:hidden}
+.cfq-progress-fill{height:100%;background:var(--cfq-grad-bar);border-radius:3px;transition:width .5s cubic-bezier(0.4,0,0.2,1)}
+
+/*──────────────────────────────────────────────
+  QUESTION CARD
+──────────────────────────────────────────────*/
+.cfq-question{transition:opacity .3s cubic-bezier(0.4,0,0.2,1),transform .3s cubic-bezier(0.4,0,0.2,1)}
+.cfq-question.cfq-animating{opacity:0;transform:translateY(14px)}
+.cfq-q-header{text-align:center;margin-bottom:22px}
+.cfq-q-icon{font-size:36px;margin-bottom:8px}
+.cfq-q-title{font-family:var(--cfq-fh);font-size:23px;font-weight:700;color:var(--cfq-text);margin:0 0 4px}
+.cfq-q-subtitle{font-size:13px;color:var(--cfq-text-2);margin:0}
+.cfq-options{display:flex;flex-direction:column;gap:7px}
+
+/*──────────────────────────────────────────────
+  OPTION BUTTONS
+──────────────────────────────────────────────*/
+.cfq-option{
+  display:flex;align-items:center;gap:11px;padding:12px 14px;width:100%;
+  background:var(--cfq-bg-card);border:1px solid var(--cfq-border);border-radius:11px;
+  cursor:pointer;text-align:left;color:var(--cfq-text);transition:all .15s ease;
+  font-family:var(--cfq-f);outline:none;
+}
+.cfq-option:not(.cfq-active):hover{background:rgba(14,165,233,0.07);border-color:var(--cfq-accent-border-h)}
+.cfq-option.cfq-active{background:rgba(14,165,233,0.14);border-color:var(--cfq-accent-border)}
+.cfq-option-label{font-size:14px;font-weight:600;margin-bottom:1px}
+.cfq-option-desc{font-size:12px;color:var(--cfq-text-2)}
+
+/* Single-select indicator (letter) */
+.cfq-idx{
+  width:32px;height:32px;border-radius:8px;
+  background:var(--cfq-accent-bg-w);display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:700;color:var(--cfq-accent-text);flex-shrink:0;transition:all .15s ease;
+}
+.cfq-active .cfq-idx{background:var(--cfq-accent-bg-a);color:#fff}
+
+/* Multi-select indicator (checkbox) */
+.cfq-chk{
+  width:22px;height:22px;border-radius:5px;
+  background:var(--cfq-accent-bg-w);display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:700;color:var(--cfq-accent-text);flex-shrink:0;transition:all .15s ease;
+}
+.cfq-active .cfq-chk{background:var(--cfq-accent-bg-a);color:#fff}
+
+.cfq-nav{display:flex;gap:8px;margin-top:14px}
+
+/*──────────────────────────────────────────────
+  RESULT CARD
+──────────────────────────────────────────────*/
+.cfq-result{animation:cfq-fadeUp .5s ease-out forwards}
+.cfq-result-header{text-align:center;margin-bottom:18px}
+.cfq-result-label{font-size:12px;text-transform:uppercase;letter-spacing:2px;color:var(--cfq-accent-text);font-weight:700;margin-bottom:5px}
+.cfq-result-name{font-family:var(--cfq-fh);font-size:25px;font-weight:700;color:var(--cfq-text);margin:0 0 3px}
+.cfq-result-type{font-size:13px;color:var(--cfq-text-2)}
+
+/*──────────────────────────────────────────────
+  MATCH SCORE BOX
+──────────────────────────────────────────────*/
+.cfq-match-box{background:var(--cfq-accent-bg-s);border:1px solid var(--cfq-accent-border-l);border-radius:13px;padding:16px;margin-bottom:16px}
+.cfq-match-top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.cfq-match-score{
+  width:44px;height:44px;border-radius:11px;background:var(--cfq-grad);
+  display:flex;align-items:center;justify-content:center;
+  font-size:19px;font-weight:800;color:#fff;
+}
+.cfq-match-title{font-size:14px;font-weight:700;color:var(--cfq-text)}
+.cfq-match-sub{font-size:12px;color:var(--cfq-text-2)}
+.cfq-explanation{font-size:13px;line-height:1.6;color:var(--cfq-text-soft);margin:0}
+.cfq-explanation strong{color:var(--cfq-text)}
+
+/*──────────────────────────────────────────────
+  USP LIST
+──────────────────────────────────────────────*/
+.cfq-section-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--cfq-text-3);margin-bottom:7px}
+.cfq-usp{display:flex;align-items:center;gap:9px;padding:8px 11px;background:var(--cfq-bg-subtle);border-radius:8px;font-size:13px;color:var(--cfq-text-soft);margin-bottom:4px}
+.cfq-usp-num{color:var(--cfq-accent-text);font-weight:700}
+
+/*──────────────────────────────────────────────
+  WARNING BOX
+──────────────────────────────────────────────*/
+.cfq-warning{
+  background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.15);
+  border-radius:9px;padding:9px 13px;margin-bottom:18px;font-size:12px;color:var(--cfq-danger);
+}
+
+/*──────────────────────────────────────────────
+  AFFILIATE CTA
+──────────────────────────────────────────────*/
+.cfq-cta{
+  display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 18px;
+  background:var(--cfq-grad);border:none;border-radius:11px;color:#fff;
+  font-size:15px;font-weight:700;font-family:var(--cfq-f);text-decoration:none;
+  cursor:pointer;transition:all .2s ease;margin-bottom:18px;
+}
+.cfq-cta:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(14,165,233,0.3);color:#fff}
+
+/*──────────────────────────────────────────────
+  RUNNER-UP CARDS
+──────────────────────────────────────────────*/
+.cfq-runner{
+  display:flex;align-items:center;gap:9px;padding:9px 11px;
+  background:var(--cfq-bg-subtle);border:1px solid var(--cfq-border-light);
+  border-radius:9px;margin-bottom:5px;
+}
+.cfq-runner-score{
+  width:36px;height:36px;border-radius:9px;background:var(--cfq-bg-overlay);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;color:var(--cfq-text-3);flex-shrink:0;
+}
+.cfq-runner-info{flex:1;min-width:0}
+.cfq-runner-name{font-size:13px;font-weight:600;color:var(--cfq-text)}
+.cfq-runner-detail{font-size:11px;color:var(--cfq-text-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cfq-runner-link{font-size:11px;color:var(--cfq-accent-text);text-decoration:none;font-weight:600;flex-shrink:0}
+.cfq-runner-link:hover{text-decoration:underline}
+
+/*──────────────────────────────────────────────
+  FOOTER
+──────────────────────────────────────────────*/
+.cfq-footer{text-align:center;margin-top:24px;padding:12px 0;border-top:1px solid var(--cfq-border-light)}
+.cfq-footer p{font-size:10px;color:var(--cfq-text-4);margin:0;line-height:1.4}
+
+/*──────────────────────────────────────────────
+  ANIMATIONS
+──────────────────────────────────────────────*/
+@keyframes cfq-fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+/*──────────────────────────────────────────────
+  RESPONSIVE
+──────────────────────────────────────────────*/
+@media(max-width:360px){
+  .cfq-wrap{padding:0 2px}
+  .cfq-start-title{font-size:22px}
+  .cfq-option{padding:10px 10px}
+}
+</style>
+</head>
+<body>
+<div id="cfq-app"></div>
+<script>
+(function(){
+'use strict';
+
+/* ═══════════════════════════════════════════════════════
+   DATA: Reedereien
+   ═══════════════════════════════════════════════════════ */
+
+var REEDEREIEN=[
+  {id:"aida",name:"AIDA Cruises",typ:"hochsee",
+   kurzbeschreibung:"Das schwimmende Clubresort f\u00fcr alle, die Spa\u00df, Action und entspannte Urlaubsstimmung auf Deutsch suchen.",
+   usp:["Deutschlands beliebteste Kreuzfahrtmarke","G\u00fcnstige Preise ab deutschen H\u00e4fen","Lockere Club-Atmosph\u00e4re"],
+   passt_nicht:"Nicht geeignet f\u00fcr Luxus-Liebhaber, Ruhesuchende oder G\u00e4ste ohne Deutschkenntnisse.",
+   preisrange:"500\u20131.500 \u20ac",affiliate:"AWIN_LINK_AIDA",affiliateLabel:"AIDA Kreuzfahrten entdecken",
+   scores:{budget_budget:8,budget_mittel:8,budget_premium:3,budget_luxus:0,gruppe_paar:7,gruppe_familie_klein:7,gruppe_familie_teen:8,gruppe_solo:5,gruppe_freunde:8,gruppe_senioren:4,ziel_mittelmeer:9,ziel_karibik:7,ziel_nordeuropa:9,ziel_fernreise:5,ziel_fluss:0,atmosphaere_party:9,atmosphaere_wellness:5,atmosphaere_kultur:3,atmosphaere_abenteuer:2,schiff_mega:9,schiff_mittel:6,schiff_boutique:0,sprache_deutsch:10,sprache_international:2,kulinarik_allinclusive:8,kulinarik_auswahl:7,kulinarik_gourmet:2,kinder_keine:1,kinder_vorhanden:8,kinder_top:6,entertainment_action:9,entertainment_spa:5,entertainment_expedition:0,dresscode_leger:10,dresscode_schick:0}},
+  {id:"tui_cruises",name:"TUI Cruises (Mein Schiff)",typ:"hochsee",
+   kurzbeschreibung:"Die Wohlf\u00fchlflotte mit Premium-All-Inclusive, riesigen Spa-Bereichen und entspannter Atmosph\u00e4re auf Deutsch.",
+   usp:["Premium All-Inclusive als Standard","Riesige Spa- und Wellnessbereiche","Deutschsprachig mit hohem Balkonanteil"],
+   passt_nicht:"Nicht geeignet f\u00fcr Action-Liebhaber, die Wasserrutschen und laute Animation suchen.",
+   preisrange:"800\u20132.200 \u20ac",affiliate:"AWIN_LINK_MEINSCHIFF",affiliateLabel:"Mein Schiff Kreuzfahrten entdecken",
+   scores:{budget_budget:4,budget_mittel:8,budget_premium:7,budget_luxus:1,gruppe_paar:9,gruppe_familie_klein:6,gruppe_familie_teen:6,gruppe_solo:5,gruppe_freunde:7,gruppe_senioren:7,ziel_mittelmeer:9,ziel_karibik:7,ziel_nordeuropa:9,ziel_fernreise:6,ziel_fluss:0,atmosphaere_party:4,atmosphaere_wellness:9,atmosphaere_kultur:4,atmosphaere_abenteuer:2,schiff_mega:6,schiff_mittel:8,schiff_boutique:0,sprache_deutsch:10,sprache_international:2,kulinarik_allinclusive:10,kulinarik_auswahl:8,kulinarik_gourmet:5,kinder_keine:1,kinder_vorhanden:7,kinder_top:5,entertainment_action:5,entertainment_spa:9,entertainment_expedition:0,dresscode_leger:8,dresscode_schick:3}},
+  {id:"msc",name:"MSC Cruises",typ:"hochsee",
+   kurzbeschreibung:"Italienisches Temperament auf riesigen Schiffen mit top Kinderprogramm zu g\u00fcnstigen Preisen.",
+   usp:["Mega-Ships mit italienischem Flair","Top-Kinderprogramm ab 1 Jahr","Unschlagbare Familienpreise"],
+   passt_nicht:"Nicht geeignet f\u00fcr Ruhesuchende oder G\u00e4ste, die rein deutschsprachigen Service erwarten.",
+   preisrange:"500\u20131.400 \u20ac",affiliate:"https://www.e-hoi.de/kreuzfahrten/msc-kreuzfahrten?partner=DEINE_EHOI_ID",affiliateLabel:"MSC Cruises bei e-hoi entdecken",
+   scores:{budget_budget:9,budget_mittel:7,budget_premium:3,budget_luxus:1,gruppe_paar:7,gruppe_familie_klein:9,gruppe_familie_teen:9,gruppe_solo:4,gruppe_freunde:8,gruppe_senioren:3,ziel_mittelmeer:10,ziel_karibik:8,ziel_nordeuropa:7,ziel_fernreise:6,ziel_fluss:0,atmosphaere_party:9,atmosphaere_wellness:4,atmosphaere_kultur:2,atmosphaere_abenteuer:1,schiff_mega:10,schiff_mittel:3,schiff_boutique:0,sprache_deutsch:5,sprache_international:9,kulinarik_allinclusive:5,kulinarik_auswahl:8,kulinarik_gourmet:3,kinder_keine:0,kinder_vorhanden:8,kinder_top:9,entertainment_action:9,entertainment_spa:4,entertainment_expedition:0,dresscode_leger:7,dresscode_schick:5}},
+  {id:"costa",name:"Costa Cruises",typ:"hochsee",
+   kurzbeschreibung:"Der g\u00fcnstigste Einstieg in die Kreuzfahrtwelt mit l\u00e4ssig-italienischer Lebensart.",
+   usp:["Niedrigste Einstiegspreise","Italienisches Lebensgef\u00fchl","Viele Mittelmeer-Routen"],
+   passt_nicht:"Nicht geeignet f\u00fcr qualit\u00e4tsbewusste G\u00e4ste mit hohen Serviceanspr\u00fcchen.",
+   preisrange:"350\u20131.100 \u20ac",affiliate:"AWIN_LINK_COSTA",affiliateLabel:"Costa Kreuzfahrten entdecken",
+   scores:{budget_budget:10,budget_mittel:6,budget_premium:1,budget_luxus:0,gruppe_paar:6,gruppe_familie_klein:7,gruppe_familie_teen:6,gruppe_solo:4,gruppe_freunde:7,gruppe_senioren:5,ziel_mittelmeer:10,ziel_karibik:6,ziel_nordeuropa:6,ziel_fernreise:4,ziel_fluss:0,atmosphaere_party:7,atmosphaere_wellness:3,atmosphaere_kultur:2,atmosphaere_abenteuer:1,schiff_mega:9,schiff_mittel:5,schiff_boutique:0,sprache_deutsch:4,sprache_international:9,kulinarik_allinclusive:4,kulinarik_auswahl:5,kulinarik_gourmet:2,kinder_keine:1,kinder_vorhanden:6,kinder_top:5,entertainment_action:7,entertainment_spa:3,entertainment_expedition:0,dresscode_leger:8,dresscode_schick:4}},
+  {id:"royal_caribbean",name:"Royal Caribbean",typ:"hochsee",
+   kurzbeschreibung:"Die gr\u00f6\u00dften und innovativsten Schiffe der Welt mit Wow-Faktor f\u00fcr die ganze Familie.",
+   usp:["Weltgr\u00f6\u00dfte Schiffe mit Wow-Faktor","Erstklassiges Familienprogramm","Wasserrutschen, Surfanlage & Zipline"],
+   passt_nicht:"Nicht geeignet f\u00fcr deutschsprachige G\u00e4ste ohne Englisch, Ruhesuchende oder Fans kleiner Schiffe.",
+   preisrange:"650\u20132.500 \u20ac",affiliate:"https://www.e-hoi.de/kreuzfahrten/royal-caribbean?partner=DEINE_EHOI_ID",affiliateLabel:"Royal Caribbean bei e-hoi entdecken",
+   scores:{budget_budget:5,budget_mittel:8,budget_premium:6,budget_luxus:1,gruppe_paar:7,gruppe_familie_klein:9,gruppe_familie_teen:10,gruppe_solo:5,gruppe_freunde:9,gruppe_senioren:4,ziel_mittelmeer:7,ziel_karibik:10,ziel_nordeuropa:7,ziel_fernreise:7,ziel_fluss:0,atmosphaere_party:9,atmosphaere_wellness:4,atmosphaere_kultur:2,atmosphaere_abenteuer:2,schiff_mega:10,schiff_mittel:4,schiff_boutique:0,sprache_deutsch:2,sprache_international:9,kulinarik_allinclusive:4,kulinarik_auswahl:9,kulinarik_gourmet:4,kinder_keine:1,kinder_vorhanden:9,kinder_top:10,entertainment_action:10,entertainment_spa:5,entertainment_expedition:0,dresscode_leger:7,dresscode_schick:4}},
+  {id:"ncl",name:"Norwegian Cruise Line (NCL)",typ:"hochsee",
+   kurzbeschreibung:"Freestyle Cruising ohne Regeln, maximale Freiheit und perfekt f\u00fcr Alleinreisende.",
+   usp:["Freestyle Cruising ohne Dresscode","Eigene Solo-Kabinen","Go-Kart und Broadway auf See"],
+   passt_nicht:"Nicht geeignet f\u00fcr deutschsprachige G\u00e4ste ohne Englisch oder Traditions-Liebhaber.",
+   preisrange:"700\u20132.000 \u20ac",affiliate:"https://www.e-hoi.de/kreuzfahrten/norwegian-cruise-line?partner=DEINE_EHOI_ID",affiliateLabel:"NCL bei e-hoi entdecken",
+   scores:{budget_budget:5,budget_mittel:8,budget_premium:5,budget_luxus:2,gruppe_paar:7,gruppe_familie_klein:5,gruppe_familie_teen:7,gruppe_solo:9,gruppe_freunde:8,gruppe_senioren:4,ziel_mittelmeer:7,ziel_karibik:9,ziel_nordeuropa:7,ziel_fernreise:7,ziel_fluss:0,atmosphaere_party:8,atmosphaere_wellness:5,atmosphaere_kultur:2,atmosphaere_abenteuer:2,schiff_mega:9,schiff_mittel:5,schiff_boutique:0,sprache_deutsch:2,sprache_international:9,kulinarik_allinclusive:5,kulinarik_auswahl:9,kulinarik_gourmet:5,kinder_keine:1,kinder_vorhanden:6,kinder_top:5,entertainment_action:9,entertainment_spa:5,entertainment_expedition:0,dresscode_leger:10,dresscode_schick:1}},
+  {id:"celebrity",name:"Celebrity Cruises",typ:"hochsee",
+   kurzbeschreibung:"Modern Luxury f\u00fcr Design-Liebhaber und Genie\u00dfer, stilvoll und erwachsenenorientiert.",
+   usp:["Preisgekr\u00f6ntes Modern-Luxury-Konzept","Herausragende K\u00fcche","Innovative Edge-Class-Schiffe"],
+   passt_nicht:"Nicht geeignet f\u00fcr Familien mit kleinen Kindern, Party-Urlauber oder Budget-Reisende.",
+   preisrange:"900\u20132.800 \u20ac",affiliate:"https://www.e-hoi.de/kreuzfahrten/celebrity-cruises?partner=DEINE_EHOI_ID",affiliateLabel:"Celebrity Cruises bei e-hoi entdecken",
+   scores:{budget_budget:2,budget_mittel:5,budget_premium:9,budget_luxus:4,gruppe_paar:9,gruppe_familie_klein:3,gruppe_familie_teen:4,gruppe_solo:6,gruppe_freunde:7,gruppe_senioren:7,ziel_mittelmeer:8,ziel_karibik:8,ziel_nordeuropa:7,ziel_fernreise:7,ziel_fluss:0,atmosphaere_party:3,atmosphaere_wellness:9,atmosphaere_kultur:6,atmosphaere_abenteuer:3,schiff_mega:6,schiff_mittel:9,schiff_boutique:1,sprache_deutsch:1,sprache_international:9,kulinarik_allinclusive:5,kulinarik_auswahl:9,kulinarik_gourmet:7,kinder_keine:4,kinder_vorhanden:4,kinder_top:2,entertainment_action:3,entertainment_spa:9,entertainment_expedition:2,dresscode_leger:5,dresscode_schick:7}},
+  {id:"disney",name:"Disney Cruise Line",typ:"hochsee",
+   kurzbeschreibung:"Magische Kreuzfahrten mit Mickey Mouse, das Nonplusultra f\u00fcr Familien mit Kindern.",
+   usp:["Weltweit beste Kinderbetreuung auf See","Disney-Charaktere & Broadway-Shows","Einziges Feuerwerk auf dem Meer"],
+   passt_nicht:"Nicht geeignet f\u00fcr Budget-Reisende, kinderfreie Paare oder G\u00e4ste ohne Englischkenntnisse.",
+   preisrange:"1.200\u20133.800 \u20ac",affiliate:"https://www.e-hoi.de/kreuzfahrten/disney-cruise-line?partner=DEINE_EHOI_ID",affiliateLabel:"Disney Cruise Line bei e-hoi entdecken",
+   scores:{budget_budget:1,budget_mittel:2,budget_premium:8,budget_luxus:4,gruppe_paar:5,gruppe_familie_klein:10,gruppe_familie_teen:8,gruppe_solo:2,gruppe_freunde:4,gruppe_senioren:3,ziel_mittelmeer:5,ziel_karibik:10,ziel_nordeuropa:4,ziel_fernreise:4,ziel_fluss:0,atmosphaere_party:5,atmosphaere_wellness:5,atmosphaere_kultur:3,atmosphaere_abenteuer:3,schiff_mega:7,schiff_mittel:7,schiff_boutique:0,sprache_deutsch:0,sprache_international:8,kulinarik_allinclusive:5,kulinarik_auswahl:7,kulinarik_gourmet:5,kinder_keine:0,kinder_vorhanden:10,kinder_top:10,entertainment_action:7,entertainment_spa:5,entertainment_expedition:0,dresscode_leger:8,dresscode_schick:3}},
+  {id:"hapag_lloyd",name:"Hapag-Lloyd Cruises",typ:"hochsee",
+   kurzbeschreibung:"Deutschlands Luxus-Reederei Nr. 1, von 5-Sterne-Plus-Suiten bis Expeditionen in die Arktis.",
+   usp:["Einzige 5-Sterne-Plus-Schiffe","Expeditionen mit h\u00f6chster Eisklasse","Gourmetk\u00fcche auf Sterneniveau"],
+   passt_nicht:"Nicht geeignet f\u00fcr Budget-Reisende, Party-Urlauber oder Familien mit Animationsbedarf.",
+   preisrange:"3.500\u201315.000 \u20ac",affiliate:"https://www.e-hoi.de/kreuzfahrten/hapag-lloyd-cruises?partner=DEINE_EHOI_ID",affiliateLabel:"Hapag-Lloyd bei e-hoi entdecken",
+   scores:{budget_budget:0,budget_mittel:0,budget_premium:3,budget_luxus:10,gruppe_paar:9,gruppe_familie_klein:3,gruppe_familie_teen:3,gruppe_solo:5,gruppe_freunde:4,gruppe_senioren:8,ziel_mittelmeer:7,ziel_karibik:5,ziel_nordeuropa:9,ziel_fernreise:9,ziel_fluss:0,atmosphaere_party:0,atmosphaere_wellness:8,atmosphaere_kultur:9,atmosphaere_abenteuer:9,schiff_mega:0,schiff_mittel:0,schiff_boutique:10,sprache_deutsch:10,sprache_international:5,kulinarik_allinclusive:4,kulinarik_auswahl:8,kulinarik_gourmet:10,kinder_keine:7,kinder_vorhanden:3,kinder_top:1,entertainment_action:0,entertainment_spa:8,entertainment_expedition:10,dresscode_leger:4,dresscode_schick:7}},
+  {id:"phoenix",name:"Phoenix Reisen",typ:"hochsee",
+   kurzbeschreibung:"Deutschsprachig, famili\u00e4r und erschwinglich, die TV-bekannte Reederei f\u00fcr Best-Ager.",
+   usp:["Bestes Preis-Leistungs-Verh\u00e4ltnis auf Deutsch","Famili\u00e4re Atmosph\u00e4re","Bekannt aus Das Traumschiff"],
+   passt_nicht:"Nicht geeignet f\u00fcr junge Reisende, Familien mit Kindern oder Fans moderner Mega-Ships.",
+   preisrange:"900\u20132.500 \u20ac",affiliate:"https://www.e-hoi.de/kreuzfahrten/phoenix-reisen?partner=DEINE_EHOI_ID",affiliateLabel:"Phoenix Reisen bei e-hoi entdecken",
+   scores:{budget_budget:6,budget_mittel:8,budget_premium:4,budget_luxus:1,gruppe_paar:7,gruppe_familie_klein:1,gruppe_familie_teen:2,gruppe_solo:6,gruppe_freunde:4,gruppe_senioren:10,ziel_mittelmeer:8,ziel_karibik:5,ziel_nordeuropa:8,ziel_fernreise:8,ziel_fluss:0,atmosphaere_party:1,atmosphaere_wellness:5,atmosphaere_kultur:7,atmosphaere_abenteuer:3,schiff_mega:0,schiff_mittel:7,schiff_boutique:6,sprache_deutsch:10,sprache_international:1,kulinarik_allinclusive:5,kulinarik_auswahl:4,kulinarik_gourmet:4,kinder_keine:9,kinder_vorhanden:1,kinder_top:0,entertainment_action:1,entertainment_spa:4,entertainment_expedition:3,dresscode_leger:5,dresscode_schick:7}},
+  {id:"hurtigruten",name:"Hurtigruten",typ:"hochsee",
+   kurzbeschreibung:"Norwegens legend\u00e4re Postschiffroute und Polarexpeditionen, Natur pur statt Animation.",
+   usp:["Legend\u00e4re norwegische K\u00fcstenroute","Polarexpeditionen mit Wissenschaftsteam","Nordlicht-Versprechen"],
+   passt_nicht:"Nicht geeignet f\u00fcr Party-Urlauber, Familien mit kleinen Kindern oder Sonnenanbeter.",
+   preisrange:"1.200\u20138.000 \u20ac",affiliate:"https://www.e-hoi.de/kreuzfahrten/hurtigruten?partner=DEINE_EHOI_ID",affiliateLabel:"Hurtigruten bei e-hoi entdecken",
+   scores:{budget_budget:3,budget_mittel:6,budget_premium:7,budget_luxus:3,gruppe_paar:8,gruppe_familie_klein:2,gruppe_familie_teen:3,gruppe_solo:7,gruppe_freunde:5,gruppe_senioren:7,ziel_mittelmeer:1,ziel_karibik:1,ziel_nordeuropa:10,ziel_fernreise:8,ziel_fluss:0,atmosphaere_party:0,atmosphaere_wellness:4,atmosphaere_kultur:7,atmosphaere_abenteuer:10,schiff_mega:0,schiff_mittel:1,schiff_boutique:9,sprache_deutsch:5,sprache_international:8,kulinarik_allinclusive:5,kulinarik_auswahl:4,kulinarik_gourmet:4,kinder_keine:9,kinder_vorhanden:2,kinder_top:0,entertainment_action:1,entertainment_spa:3,entertainment_expedition:10,dresscode_leger:10,dresscode_schick:0}},
+  {id:"cunard",name:"Cunard",typ:"hochsee",
+   kurzbeschreibung:"Britische Tradition mit Gala-Abenden und Afternoon Tea, Kreuzfahrt wie in der goldenen \u00c4ra.",
+   usp:["Einziger Transatlantik-Liniendienst","Legend\u00e4re Gala-Abende","\u00dcber 180 Jahre Tradition"],
+   passt_nicht:"Nicht geeignet f\u00fcr Casual-Urlauber, Familien mit Kindern oder G\u00e4ste, die sich ungern schick anziehen.",
+   preisrange:"800\u20134.000 \u20ac",affiliate:"https://www.e-hoi.de/kreuzfahrten/cunard?partner=DEINE_EHOI_ID",affiliateLabel:"Cunard bei e-hoi entdecken",
+   scores:{budget_budget:2,budget_mittel:5,budget_premium:8,budget_luxus:7,gruppe_paar:8,gruppe_familie_klein:2,gruppe_familie_teen:3,gruppe_solo:6,gruppe_freunde:4,gruppe_senioren:9,ziel_mittelmeer:7,ziel_karibik:6,ziel_nordeuropa:7,ziel_fernreise:8,ziel_fluss:0,atmosphaere_party:1,atmosphaere_wellness:6,atmosphaere_kultur:10,atmosphaere_abenteuer:1,schiff_mega:4,schiff_mittel:9,schiff_boutique:0,sprache_deutsch:2,sprache_international:9,kulinarik_allinclusive:3,kulinarik_auswahl:7,kulinarik_gourmet:8,kinder_keine:7,kinder_vorhanden:3,kinder_top:1,entertainment_action:1,entertainment_spa:7,entertainment_expedition:1,dresscode_leger:1,dresscode_schick:10}},
+  {id:"princess",name:"Princess Cruises",typ:"hochsee",
+   kurzbeschreibung:"Das Love Boat lebt, klassische Eleganz mit modernster Technik und weltweiten Routen.",
+   usp:["MedallionClass-Technologie","Gr\u00f6\u00dftes Alaska-Programm","Weltreisen und 150+ Routen"],
+   passt_nicht:"Nicht geeignet f\u00fcr junge Party-Urlauber, Familien mit Kleinkindern oder deutschsprachige G\u00e4ste.",
+   preisrange:"500\u20132.400 \u20ac",affiliate:"https://www.e-hoi.de/kreuzfahrten/princess-cruises?partner=DEINE_EHOI_ID",affiliateLabel:"Princess Cruises bei e-hoi entdecken",
+   scores:{budget_budget:4,budget_mittel:8,budget_premium:7,budget_luxus:1,gruppe_paar:8,gruppe_familie_klein:4,gruppe_familie_teen:5,gruppe_solo:5,gruppe_freunde:5,gruppe_senioren:8,ziel_mittelmeer:8,ziel_karibik:7,ziel_nordeuropa:7,ziel_fernreise:9,ziel_fluss:0,atmosphaere_party:3,atmosphaere_wellness:7,atmosphaere_kultur:6,atmosphaere_abenteuer:4,schiff_mega:7,schiff_mittel:7,schiff_boutique:0,sprache_deutsch:2,sprache_international:9,kulinarik_allinclusive:5,kulinarik_auswahl:7,kulinarik_gourmet:5,kinder_keine:4,kinder_vorhanden:5,kinder_top:2,entertainment_action:4,entertainment_spa:7,entertainment_expedition:1,dresscode_leger:5,dresscode_schick:7}},
+  {id:"azamara",name:"Azamara",typ:"hochsee",
+   kurzbeschreibung:"Kleine Schiffe mit den l\u00e4ngsten Hafenaufenthalten aller Reedereien, f\u00fcr echte Entdecker.",
+   usp:["L\u00e4ngste Hafenaufenthalte","Exklusive AzAmazing-Kulturevents","Kleine Schiffe, besondere H\u00e4fen"],
+   passt_nicht:"Nicht geeignet f\u00fcr Familien mit Kindern, Action-Suchende oder Budget-Reisende.",
+   preisrange:"1.300\u20134.000 \u20ac",affiliate:"https://www.e-hoi.de/kreuzfahrten/azamara?partner=DEINE_EHOI_ID",affiliateLabel:"Azamara bei e-hoi entdecken",
+   scores:{budget_budget:1,budget_mittel:3,budget_premium:8,budget_luxus:5,gruppe_paar:9,gruppe_familie_klein:0,gruppe_familie_teen:1,gruppe_solo:6,gruppe_freunde:5,gruppe_senioren:8,ziel_mittelmeer:9,ziel_karibik:6,ziel_nordeuropa:7,ziel_fernreise:8,ziel_fluss:0,atmosphaere_party:1,atmosphaere_wellness:6,atmosphaere_kultur:8,atmosphaere_abenteuer:4,schiff_mega:0,schiff_mittel:0,schiff_boutique:9,sprache_deutsch:1,sprache_international:9,kulinarik_allinclusive:7,kulinarik_auswahl:5,kulinarik_gourmet:6,kinder_keine:10,kinder_vorhanden:0,kinder_top:0,entertainment_action:1,entertainment_spa:6,entertainment_expedition:3,dresscode_leger:8,dresscode_schick:4}},
+  {id:"star_clippers",name:"Star Clippers",typ:"hochsee",
+   kurzbeschreibung:"Echte Gro\u00dfsegler zum Mitsegeln, Abenteuer unter wei\u00dfen Segeln f\u00fcr Romantiker.",
+   usp:["Einzige Gro\u00dfsegler-Kreuzfahrten","Nur 170\u2013227 G\u00e4ste","Mitmach-Segeln & Wassersport"],
+   passt_nicht:"Nicht geeignet f\u00fcr Familien mit Kleinkindern, Rollstuhlfahrer oder G\u00e4ste, die Shows erwarten.",
+   preisrange:"1.100\u20135.500 \u20ac",affiliate:"https://www.e-hoi.de/kreuzfahrten/star-clippers?partner=DEINE_EHOI_ID",affiliateLabel:"Star Clippers bei e-hoi entdecken",
+   scores:{budget_budget:2,budget_mittel:4,budget_premium:7,budget_luxus:3,gruppe_paar:9,gruppe_familie_klein:1,gruppe_familie_teen:3,gruppe_solo:5,gruppe_freunde:6,gruppe_senioren:6,ziel_mittelmeer:8,ziel_karibik:8,ziel_nordeuropa:1,ziel_fernreise:5,ziel_fluss:0,atmosphaere_party:2,atmosphaere_wellness:3,atmosphaere_kultur:5,atmosphaere_abenteuer:9,schiff_mega:0,schiff_mittel:0,schiff_boutique:10,sprache_deutsch:5,sprache_international:9,kulinarik_allinclusive:4,kulinarik_auswahl:3,kulinarik_gourmet:5,kinder_keine:9,kinder_vorhanden:1,kinder_top:0,entertainment_action:1,entertainment_spa:2,entertainment_expedition:6,dresscode_leger:9,dresscode_schick:2}},
+  {id:"explora",name:"Explora Journeys",typ:"hochsee",
+   kurzbeschreibung:"Neue Ultra-Luxus-Marke mit Superyacht-Feeling, komplett All-Inclusive auf h\u00f6chstem Niveau.",
+   usp:["Brandneue Superyacht-Schiffe","Komplett All-Inclusive mit Champagner","Nur Suiten mit Terrasse"],
+   passt_nicht:"Nicht geeignet f\u00fcr Budget-Reisende, Familien mit Kindern oder Party-Urlauber.",
+   preisrange:"3.100\u201310.000 \u20ac",affiliate:"https://www.e-hoi.de/kreuzfahrten/explora-journeys?partner=DEINE_EHOI_ID",affiliateLabel:"Explora Journeys bei e-hoi entdecken",
+   scores:{budget_budget:0,budget_mittel:0,budget_premium:3,budget_luxus:10,gruppe_paar:9,gruppe_familie_klein:2,gruppe_familie_teen:2,gruppe_solo:4,gruppe_freunde:5,gruppe_senioren:7,ziel_mittelmeer:8,ziel_karibik:8,ziel_nordeuropa:7,ziel_fernreise:6,ziel_fluss:0,atmosphaere_party:1,atmosphaere_wellness:9,atmosphaere_kultur:6,atmosphaere_abenteuer:2,schiff_mega:0,schiff_mittel:5,schiff_boutique:7,sprache_deutsch:3,sprache_international:10,kulinarik_allinclusive:9,kulinarik_auswahl:9,kulinarik_gourmet:9,kinder_keine:7,kinder_vorhanden:3,kinder_top:0,entertainment_action:0,entertainment_spa:10,entertainment_expedition:1,dresscode_leger:7,dresscode_schick:6}},
+  {id:"oceania",name:"Oceania Cruises",typ:"hochsee",
+   kurzbeschreibung:"Die beste K\u00fcche auf See, ein schwimmendes Gourmet-Restaurant f\u00fcr Feinschmecker und Weltreisende.",
+   usp:["Beste K\u00fcche aller Kreuzfahrtlinien","Alle Spezialit\u00e4tenrestaurants inklusive","Exklusiv f\u00fcr Erwachsene"],
+   passt_nicht:"Nicht geeignet f\u00fcr Familien mit Kindern, Party-Urlauber oder Budget-Reisende.",
+   preisrange:"1.800\u20135.000 \u20ac",affiliate:"https://www.e-hoi.de/kreuzfahrten/oceania-cruises?partner=DEINE_EHOI_ID",affiliateLabel:"Oceania Cruises bei e-hoi entdecken",
+   scores:{budget_budget:0,budget_mittel:2,budget_premium:8,budget_luxus:6,gruppe_paar:9,gruppe_familie_klein:0,gruppe_familie_teen:1,gruppe_solo:6,gruppe_freunde:5,gruppe_senioren:9,ziel_mittelmeer:8,ziel_karibik:7,ziel_nordeuropa:7,ziel_fernreise:9,ziel_fluss:0,atmosphaere_party:0,atmosphaere_wellness:7,atmosphaere_kultur:8,atmosphaere_abenteuer:3,schiff_mega:0,schiff_mittel:7,schiff_boutique:7,sprache_deutsch:1,sprache_international:8,kulinarik_allinclusive:6,kulinarik_auswahl:9,kulinarik_gourmet:10,kinder_keine:10,kinder_vorhanden:1,kinder_top:0,entertainment_action:0,entertainment_spa:8,entertainment_expedition:2,dresscode_leger:7,dresscode_schick:5}},
+  {id:"arosa",name:"A-ROSA",typ:"fluss",
+   kurzbeschreibung:"Premium-Flusskreuzfahrten mit All-Inclusive, entspannt \u00fcber Europas sch\u00f6nste Fl\u00fcsse gleiten.",
+   usp:["Premium All-Inclusive auf dem Fluss","Bestes Familien-Flussschiff","Kinder bis 15 reisen gratis"],
+   passt_nicht:"Nicht geeignet f\u00fcr Abenteurer oder G\u00e4ste, die exotische Fl\u00fcsse suchen.",
+   preisrange:"800\u20132.500 \u20ac",affiliate:"AWIN_LINK_AROSA",affiliateLabel:"A-ROSA Flusskreuzfahrten entdecken",
+   scores:{budget_budget:6,budget_mittel:8,budget_premium:6,budget_luxus:1,gruppe_paar:8,gruppe_familie_klein:7,gruppe_familie_teen:6,gruppe_solo:5,gruppe_freunde:6,gruppe_senioren:6,ziel_mittelmeer:0,ziel_karibik:0,ziel_nordeuropa:0,ziel_fernreise:0,ziel_fluss:9,atmosphaere_party:2,atmosphaere_wellness:7,atmosphaere_kultur:5,atmosphaere_abenteuer:2,schiff_mega:0,schiff_mittel:0,schiff_boutique:9,sprache_deutsch:9,sprache_international:3,kulinarik_allinclusive:8,kulinarik_auswahl:5,kulinarik_gourmet:4,kinder_keine:2,kinder_vorhanden:8,kinder_top:5,entertainment_action:2,entertainment_spa:7,entertainment_expedition:1,dresscode_leger:9,dresscode_schick:1}},
+  {id:"nicko",name:"nicko cruises",typ:"fluss",
+   kurzbeschreibung:"Von der Donau bis zum Mekong, die gr\u00f6\u00dfte Routenvielfalt aller deutschen Flussreedereien.",
+   usp:["Breiteste Routenvielfalt inkl. Nil & Mekong","Haust\u00fcrabholung inklusive","\u00dcber 30 Jahre Erfahrung"],
+   passt_nicht:"Nicht geeignet f\u00fcr Familien mit Kindern oder G\u00e4ste, die durchg\u00e4ngig moderne Schiffe erwarten.",
+   preisrange:"700\u20132.000 \u20ac",affiliate:"https://www.e-hoi.de/kreuzfahrten/nicko-cruises?partner=DEINE_EHOI_ID",affiliateLabel:"nicko cruises bei e-hoi entdecken",
+   scores:{budget_budget:7,budget_mittel:8,budget_premium:4,budget_luxus:1,gruppe_paar:7,gruppe_familie_klein:1,gruppe_familie_teen:2,gruppe_solo:5,gruppe_freunde:5,gruppe_senioren:9,ziel_mittelmeer:1,ziel_karibik:0,ziel_nordeuropa:1,ziel_fernreise:0,ziel_fluss:9,atmosphaere_party:1,atmosphaere_wellness:4,atmosphaere_kultur:7,atmosphaere_abenteuer:3,schiff_mega:0,schiff_mittel:1,schiff_boutique:10,sprache_deutsch:10,sprache_international:3,kulinarik_allinclusive:3,kulinarik_auswahl:4,kulinarik_gourmet:4,kinder_keine:9,kinder_vorhanden:1,kinder_top:0,entertainment_action:0,entertainment_spa:4,entertainment_expedition:1,dresscode_leger:7,dresscode_schick:5}},
+  {id:"viva",name:"Viva Cruises",typ:"fluss",
+   kurzbeschreibung:"Die junge Premium-Reederei mit dem gro\u00dfz\u00fcgigsten All-Inclusive auf Europas Fl\u00fcssen.",
+   usp:["Umfassendstes All-Inclusive mit Minibar","J\u00fcngstes Publikum aller Flussreedereien","Zweisprachig DE/EN"],
+   passt_nicht:"Nicht geeignet f\u00fcr Familien mit Kindern oder G\u00e4ste, die exotische Fl\u00fcsse suchen.",
+   preisrange:"1.000\u20132.600 \u20ac",affiliate:"https://www.e-hoi.de/kreuzfahrten/viva-cruises?partner=DEINE_EHOI_ID",affiliateLabel:"Viva Cruises bei e-hoi entdecken",
+   scores:{budget_budget:3,budget_mittel:7,budget_premium:8,budget_luxus:3,gruppe_paar:9,gruppe_familie_klein:1,gruppe_familie_teen:1,gruppe_solo:5,gruppe_freunde:6,gruppe_senioren:7,ziel_mittelmeer:0,ziel_karibik:0,ziel_nordeuropa:0,ziel_fernreise:0,ziel_fluss:9,atmosphaere_party:1,atmosphaere_wellness:7,atmosphaere_kultur:6,atmosphaere_abenteuer:1,schiff_mega:0,schiff_mittel:0,schiff_boutique:10,sprache_deutsch:8,sprache_international:6,kulinarik_allinclusive:10,kulinarik_auswahl:4,kulinarik_gourmet:7,kinder_keine:9,kinder_vorhanden:1,kinder_top:0,entertainment_action:0,entertainment_spa:7,entertainment_expedition:0,dresscode_leger:8,dresscode_schick:2}}
+];
+
+var REEDEREI_BY_ID={};
+REEDEREIEN.forEach(function(r){REEDEREI_BY_ID[r.id]=r});
+
+/* ═══════════════════════════════════════════════════════
+   DATA: Quiz-Fragen
+   ═══════════════════════════════════════════════════════ */
+
+var QUESTIONS=[
+  {id:"budget",title:"Dein Budget",subtitle:"Was darf die Kreuzfahrt pro Person und Woche kosten?",icon:"\u20ac",multi:false,options:[
+    {label:"Unter 1.000 \u20ac",desc:"Hauptsache g\u00fcnstig aufs Meer",scoreKey:"budget_budget"},
+    {label:"1.000\u20132.000 \u20ac",desc:"Gutes Preis-Leistungs-Verh\u00e4ltnis",scoreKey:"budget_mittel"},
+    {label:"2.000\u20134.000 \u20ac",desc:"Premium darf es schon sein",scoreKey:"budget_premium"},
+    {label:"\u00dcber 4.000 \u20ac",desc:"Luxus, das Beste vom Besten",scoreKey:"budget_luxus"}]},
+  {id:"gruppe",title:"Mit wem reist du?",subtitle:"W\u00e4hle alle zutreffenden Optionen",icon:"\ud83d\udc65",multi:true,options:[
+    {label:"Als Paar",desc:"Romantik zu zweit",scoreKey:"gruppe_paar"},
+    {label:"Familie mit kleinen Kindern",desc:"Kids unter 6 Jahren dabei",scoreKey:"gruppe_familie_klein"},
+    {label:"Familie mit Teenagern",desc:"Die Gro\u00dfen wollen Action",scoreKey:"gruppe_familie_teen"},
+    {label:"Solo",desc:"Alleine die Welt entdecken",scoreKey:"gruppe_solo"},
+    {label:"Freundesgruppe",desc:"Gemeinsam Spa\u00df haben",scoreKey:"gruppe_freunde"},
+    {label:"Best Ager / Senioren",desc:"Entspannt und komfortabel",scoreKey:"gruppe_senioren"}]},
+  {id:"ziel",title:"Wohin soll es gehen?",subtitle:"Auch mehrere Ziele m\u00f6glich",icon:"\ud83c\udf0d",multi:true,options:[
+    {label:"Mittelmeer",desc:"Sonne, Kultur, gutes Essen",scoreKey:"ziel_mittelmeer"},
+    {label:"Karibik",desc:"T\u00fcrkises Wasser, Palmen",scoreKey:"ziel_karibik"},
+    {label:"Nordeuropa & Norwegen",desc:"Fjorde, Nordlicht, Natur",scoreKey:"ziel_nordeuropa"},
+    {label:"Fernreise",desc:"Asien, S\u00fcdamerika, Weltreise",scoreKey:"ziel_fernreise"},
+    {label:"Flusskreuzfahrt",desc:"Donau, Rhein, Nil oder Mekong",scoreKey:"ziel_fluss"}]},
+  {id:"atmosphaere",title:"Welche Stimmung an Bord?",subtitle:"Auch mehrere m\u00f6glich",icon:"\u2728",multi:true,options:[
+    {label:"Party & Action",desc:"Shows, Wasserrutschen, Nightlife",scoreKey:"atmosphaere_party"},
+    {label:"Wellness & Entspannung",desc:"Spa, Pool, Ruhe genie\u00dfen",scoreKey:"atmosphaere_wellness"},
+    {label:"Kultur & Bildung",desc:"Vortr\u00e4ge, Bibliothek, Geschichte",scoreKey:"atmosphaere_kultur"},
+    {label:"Abenteuer & Expedition",desc:"Natur hautnah, Zodiac-Fahrten",scoreKey:"atmosphaere_abenteuer"}]},
+  {id:"schiff",title:"Welche Schiffsgr\u00f6\u00dfe?",subtitle:"Mega-Resort oder Boutique-Schiff?",icon:"\ud83d\udea2",multi:false,options:[
+    {label:"Mega-Ship",desc:"\u00dcber 3.000 G\u00e4ste, Freizeitpark",scoreKey:"schiff_mega"},
+    {label:"Mittelgro\u00df",desc:"1.000\u20133.000 G\u00e4ste, guter Mix",scoreKey:"schiff_mittel"},
+    {label:"Klein & Boutique",desc:"Unter 1.000 G\u00e4ste, pers\u00f6nlich",scoreKey:"schiff_boutique"}]},
+  {id:"sprache",title:"Bordsprache",subtitle:"Wie wichtig ist dir Deutsch an Bord?",icon:"\ud83d\udde3\ufe0f",multi:false,options:[
+    {label:"Deutsch muss sein",desc:"Bordprogramm, Men\u00fcs, Crew",scoreKey:"sprache_deutsch"},
+    {label:"International ist okay",desc:"Englisch reicht mir v\u00f6llig",scoreKey:"sprache_international"}]},
+  {id:"kulinarik",title:"Essen an Bord",subtitle:"Wie wichtig ist dir die K\u00fcche?",icon:"\ud83c\udf7d\ufe0f",multi:false,options:[
+    {label:"Buffet reicht v\u00f6llig",desc:"All-Inclusive, Hauptsache satt",scoreKey:"kulinarik_allinclusive"},
+    {label:"Gute Auswahl wichtig",desc:"Mehrere Restaurants, Vielfalt",scoreKey:"kulinarik_auswahl"},
+    {label:"Fine Dining & Gourmet",desc:"Sterneniveau, Highlight",scoreKey:"kulinarik_gourmet"}]},
+  {id:"kinder",title:"Kinderbetreuung",subtitle:"Brauchst du ein Kinderprogramm?",icon:"\ud83e\uddd2",multi:false,options:[
+    {label:"Kein Bedarf",desc:"Ohne Kinder / Erwachsenen-Schiff",scoreKey:"kinder_keine"},
+    {label:"Nice-to-have",desc:"Mal ein paar Stunden Betreuung",scoreKey:"kinder_vorhanden"},
+    {label:"Absolut entscheidend",desc:"Top-Kids-Club ist ein Muss",scoreKey:"kinder_top"}]},
+  {id:"entertainment",title:"Unterhaltung an Bord",subtitle:"Auch mehrere m\u00f6glich",icon:"\ud83c\udfad",multi:true,options:[
+    {label:"Action & Shows",desc:"Wasserrutschen, Broadway, Casino",scoreKey:"entertainment_action"},
+    {label:"Spa & Ruhe",desc:"Wellness, Pool, Sterne gucken",scoreKey:"entertainment_spa"},
+    {label:"Natur & Expeditionen",desc:"Vortr\u00e4ge, Zodiac, Wildtiere",scoreKey:"entertainment_expedition"}]},
+  {id:"dresscode",title:"Dresscode",subtitle:"Wie leger darf es an Bord sein?",icon:"\ud83d\udc54",multi:false,options:[
+    {label:"Casual & leger",desc:"Flip-Flops und Shorts",scoreKey:"dresscode_leger"},
+    {label:"Gerne mal schick",desc:"Gala-Abende und elegante Dinner",scoreKey:"dresscode_schick"}]}
+];
+
+/* ═══════════════════════════════════════════════════════
+   UTILITIES
+   ═══════════════════════════════════════════════════════ */
+
+function escHtml(s){
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function formatBold(text){
+  return text.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');
+}
+
+/* ═══════════════════════════════════════════════════════
+   BUSINESS LOGIC
+   ═══════════════════════════════════════════════════════ */
+
+function calculateResults(answers){
+  var scores={};
+  REEDEREIEN.forEach(function(reederei){
+    var total=0;
+    Object.keys(answers).forEach(function(key){
+      var value=answers[key];
+      if(Array.isArray(value)){
+        value.forEach(function(k){total+=reederei.scores[k]||0});
+      }else{
+        total+=reederei.scores[value]||0;
+      }
+    });
+    scores[reederei.id]=total;
+  });
+  var sorted=Object.entries(scores).sort(function(a,b){return b[1]-a[1]});
+  var maxScore=sorted[0][1];
+  return sorted.map(function(entry){
+    var id=entry[0],score=entry[1];
+    var r=REEDEREI_BY_ID[id];
+    return Object.assign({},r,{
+      totalScore:score,
+      matchPercent:maxScore>0?Math.round((score/maxScore)*100):0
+    });
+  });
+}
+
+function generateExplanation(winner,answers){
+  var parts=[];
+  var budgetLabels={budget_budget:"g\u00fcnstigen Preisen",budget_mittel:"fairem Preis-Leistungs-Verh\u00e4ltnis",budget_premium:"Premium-Qualit\u00e4t",budget_luxus:"echtem Luxus"};
+  var atmosphereLabels={atmosphaere_party:"Action und Entertainment",atmosphaere_wellness:"Wellness und Entspannung",atmosphaere_kultur:"Kultur und Bildung",atmosphaere_abenteuer:"Abenteuer und Natur"};
+  var foodLabels={kulinarik_allinclusive:"ein unkompliziertes All-Inclusive-Konzept",kulinarik_auswahl:"eine gute Restaurantauswahl",kulinarik_gourmet:"erstklassige Gourmetk\u00fcche"};
+
+  if(answers.budget){parts.push("Du suchst nach "+(budgetLabels[answers.budget]||"einer guten Kreuzfahrt"))}
+  if(answers.atmosphaere){
+    var keys=Array.isArray(answers.atmosphaere)?answers.atmosphaere:[answers.atmosphaere];
+    var labels=keys.map(function(k){return atmosphereLabels[k]}).filter(Boolean);
+    if(labels.length)parts.push("legst Wert auf "+labels.join(" und "));
+  }
+  if(answers.kulinarik){parts.push("w\u00fcnschst dir "+(foodLabels[answers.kulinarik]||"gutes Essen"))}
+
+  var text=parts.length>0?parts.join(", ")+". ":"";
+  text+="**"+winner.name+"** trifft genau diesen Nerv: "+winner.kurzbeschreibung;
+  return text;
+}
+
+/* ═══════════════════════════════════════════════════════
+   STATE
+   ═══════════════════════════════════════════════════════ */
+
+var state={
+  step:'start',
+  currentQuestion:0,
+  answers:{},
+  animating:false,
+  multiSelected:[]
+};
+
+/* ═══════════════════════════════════════════════════════
+   RENDER HELPERS
+   ═══════════════════════════════════════════════════════ */
+
+function renderFooter(){
+  return '<div class="cfq-footer"><p>Powered by fernwehblog.net &middot; * Affiliate-Links, dir entstehen keine Mehrkosten.</p></div>';
+}
+
+function renderProgressBar(){
+  var current=state.currentQuestion+1;
+  var total=QUESTIONS.length;
+  var pct=Math.round((current/total)*100);
+  return '<div class="cfq-progress">'+
+    '<div class="cfq-progress-info"><span>Frage '+current+' von '+total+'</span><span>'+pct+'%</span></div>'+
+    '<div class="cfq-progress-track"><div class="cfq-progress-fill" style="width:'+pct+'%"></div></div>'+
+  '</div>';
+}
+
+/* ═══════════════════════════════════════════════════════
+   RENDER FUNCTIONS
+   ═══════════════════════════════════════════════════════ */
+
+function renderStart(){
+  return '<div class="cfq-page"><div class="cfq-wrap">'+
+    '<div class="cfq-header">'+
+      '<div class="cfq-badge"><span class="cfq-badge-icon">\ud83d\udea2</span><span class="cfq-badge-text">Kreuzfahrt-Finder</span></div>'+
+      '<div class="cfq-start">'+
+        '<h1 class="cfq-start-title">Welche Kreuzfahrt passt zu dir?</h1>'+
+        '<p class="cfq-start-sub">10 schnelle Fragen, 20 Reedereien im Vergleich. Finde in 2 Minuten deine perfekte Kreuzfahrtlinie.</p>'+
+        '<button class="cfq-btn-primary" id="cfq-start-btn">Quiz starten</button>'+
+        '<div class="cfq-start-meta"><span>20 Reedereien</span><span>&middot;</span><span>10 Fragen</span><span>&middot;</span><span>~2 Min.</span></div>'+
+      '</div>'+
+    '</div>'+
+    renderFooter()+
+  '</div></div>';
+}
+
+function renderQuiz(){
+  var q=QUESTIONS[state.currentQuestion];
+  var animClass=state.animating?' cfq-animating':'';
+  var html='<div class="cfq-page"><div class="cfq-wrap">'+
+    '<div class="cfq-header cfq-compact">'+
+      '<div class="cfq-badge"><span class="cfq-badge-icon">\ud83d\udea2</span><span class="cfq-badge-text">Kreuzfahrt-Finder</span></div>'+
+    '</div>'+
+    renderProgressBar()+
+    '<div class="cfq-question'+animClass+'">'+
+      '<div class="cfq-q-header">'+
+        '<div class="cfq-q-icon">'+q.icon+'</div>'+
+        '<h2 class="cfq-q-title">'+escHtml(q.title)+'</h2>'+
+        '<p class="cfq-q-subtitle">'+escHtml(q.subtitle)+'</p>'+
+      '</div>'+
+      '<div class="cfq-options">';
+
+  q.options.forEach(function(opt,i){
+    var isActive=false;
+    if(q.multi){
+      isActive=state.multiSelected.indexOf(opt.scoreKey)>-1;
+    }else{
+      isActive=state.answers[q.id]===opt.scoreKey;
+    }
+    var activeClass=isActive?' cfq-active':'';
+    var indicator=q.multi
+      ?'<div class="cfq-chk">'+(isActive?'\u2713':'')+'</div>'
+      :'<div class="cfq-idx">'+String.fromCharCode(65+i)+'</div>';
+
+    html+='<button class="cfq-option'+activeClass+'" data-key="'+opt.scoreKey+'">'+
+      indicator+
+      '<div style="min-width:0"><div class="cfq-option-label">'+escHtml(opt.label)+'</div><div class="cfq-option-desc">'+escHtml(opt.desc)+'</div></div>'+
+    '</button>';
+  });
+
+  html+='</div><div class="cfq-nav">';
+  if(state.currentQuestion>0){
+    html+='<button class="cfq-btn-back" id="cfq-back">&larr; Zur\u00fcck</button>';
+  }
+  if(q.multi){
+    var count=state.multiSelected.length;
+    var cls=count>0?'cfq-enabled':'cfq-disabled';
+    html+='<button class="cfq-btn-confirm '+cls+'" id="cfq-confirm"'+(count===0?' disabled':'')+'>Weiter'+(count>0?' ('+count+')':'')+'</button>';
+  }
+  html+='</div></div>'+renderFooter()+'</div></div>';
+  return html;
+}
+
+function renderResult(){
+  var results=calculateResults(state.answers);
+  var winner=results[0];
+  var runners=results.slice(1,4);
+  var explanation=generateExplanation(winner,state.answers);
+  var typLabel=winner.typ==='fluss'?'Flusskreuzfahrt':'Hochseekreuzfahrt';
+
+  var html='<div class="cfq-page"><div class="cfq-wrap">'+
+    '<div class="cfq-header cfq-compact">'+
+      '<div class="cfq-badge"><span class="cfq-badge-icon">\ud83d\udea2</span><span class="cfq-badge-text">Kreuzfahrt-Finder</span></div>'+
+    '</div>'+
+    '<div class="cfq-result">'+
+      '<div class="cfq-result-header">'+
+        '<div class="cfq-result-label">Dein Ergebnis</div>'+
+        '<h2 class="cfq-result-name">'+escHtml(winner.name)+'</h2>'+
+        '<div class="cfq-result-type">'+typLabel+' &middot; '+escHtml(winner.preisrange)+'/Woche</div>'+
+      '</div>'+
+      '<div class="cfq-match-box">'+
+        '<div class="cfq-match-top">'+
+          '<div class="cfq-match-score">'+winner.matchPercent+'%</div>'+
+          '<div><div class="cfq-match-title">Match-Score</div><div class="cfq-match-sub">Passt am besten zu deinen W\u00fcnschen</div></div>'+
+        '</div>'+
+        '<p class="cfq-explanation">'+formatBold(explanation)+'</p>'+
+      '</div>'+
+      '<div style="margin-bottom:14px"><div class="cfq-section-label">Top 3 St\u00e4rken</div>';
+
+  winner.usp.forEach(function(u,i){
+    html+='<div class="cfq-usp"><span class="cfq-usp-num">'+(i+1)+'.</span> '+escHtml(u)+'</div>';
+  });
+
+  html+='</div>'+
+    '<div class="cfq-warning">'+escHtml(winner.passt_nicht)+'</div>'+
+    '<a class="cfq-cta" href="'+escHtml(winner.affiliate)+'" target="_blank" rel="noopener noreferrer sponsored">'+escHtml(winner.affiliateLabel)+' &rarr;</a>'+
+    '<div style="margin-bottom:16px"><div class="cfq-section-label">Auch interessant</div>';
+
+  runners.forEach(function(r){
+    html+='<div class="cfq-runner">'+
+      '<div class="cfq-runner-score">'+r.matchPercent+'%</div>'+
+      '<div class="cfq-runner-info">'+
+        '<div class="cfq-runner-name">'+escHtml(r.name)+'</div>'+
+        '<div class="cfq-runner-detail">'+escHtml(r.preisrange)+' &middot; '+escHtml(r.usp[0])+'</div>'+
+      '</div>'+
+      '<a class="cfq-runner-link" href="'+escHtml(r.affiliate)+'" target="_blank" rel="noopener noreferrer sponsored">Ansehen&rarr;</a>'+
+    '</div>';
+  });
+
+  html+='</div>'+
+    '<button class="cfq-btn-restart" id="cfq-restart">Quiz nochmal starten</button>'+
+    '</div>'+renderFooter()+'</div></div>';
+  return html;
+}
+
+/* ═══════════════════════════════════════════════════════
+   NAVIGATION HELPERS
+   ═══════════════════════════════════════════════════════ */
+
+function initMultiSelected(){
+  var q=QUESTIONS[state.currentQuestion];
+  if(q.multi){
+    var existing=state.answers[q.id];
+    state.multiSelected=Array.isArray(existing)?existing.slice():[];
+  }else{
+    state.multiSelected=[];
+  }
+}
+
+function advanceQuestion(){
+  var q=QUESTIONS[state.currentQuestion];
+  state.animating=true;
+  render();
+  setTimeout(function(){
+    if(state.currentQuestion<QUESTIONS.length-1){
+      state.currentQuestion++;
+      initMultiSelected();
+      state.animating=false;
+      render();
+    }else{
+      state.step='result';
+      state.animating=false;
+      render();
+    }
+  },220);
+}
+
+function goBack(){
+  if(state.currentQuestion>0){
+    state.animating=true;
+    render();
+    setTimeout(function(){
+      state.currentQuestion--;
+      initMultiSelected();
+      state.animating=false;
+      render();
+    },180);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   BIND FUNCTIONS
+   ═══════════════════════════════════════════════════════ */
+
+function bindStart(){
+  var btn=document.getElementById('cfq-start-btn');
+  if(btn)btn.addEventListener('click',function(){
+    state.step='quiz';
+    state.currentQuestion=0;
+    initMultiSelected();
+    render();
+  });
+}
+
+function bindQuiz(){
+  var q=QUESTIONS[state.currentQuestion];
+
+  document.querySelectorAll('#cfq-app .cfq-option').forEach(function(el){
+    el.addEventListener('click',function(){
+      var key=el.getAttribute('data-key');
+      if(q.multi){
+        var idx=state.multiSelected.indexOf(key);
+        if(idx>-1){state.multiSelected.splice(idx,1)}else{state.multiSelected.push(key)}
+        render();
+      }else{
+        state.answers[q.id]=key;
+        advanceQuestion();
+      }
+    });
+  });
+
+  var confirmBtn=document.getElementById('cfq-confirm');
+  if(confirmBtn)confirmBtn.addEventListener('click',function(){
+    if(state.multiSelected.length>0){
+      state.answers[q.id]=state.multiSelected.slice();
+      advanceQuestion();
+    }
+  });
+
+  var backBtn=document.getElementById('cfq-back');
+  if(backBtn)backBtn.addEventListener('click',goBack);
+}
+
+function bindResult(){
+  var btn=document.getElementById('cfq-restart');
+  if(btn)btn.addEventListener('click',function(){
+    state.step='start';
+    state.currentQuestion=0;
+    state.answers={};
+    state.animating=false;
+    state.multiSelected=[];
+    render();
+    var app=document.getElementById('cfq-app');
+    if(app)app.scrollIntoView({behavior:'smooth'});
+  });
+}
+
+/* ═══════════════════════════════════════════════════════
+   MAIN RENDER
+   ═══════════════════════════════════════════════════════ */
+
+function render(){
+  var app=document.getElementById('cfq-app');
+  if(state.step==='start'){
+    app.innerHTML=renderStart();
+    bindStart();
+  }else if(state.step==='quiz'){
+    app.innerHTML=renderQuiz();
+    bindQuiz();
+  }else if(state.step==='result'){
+    app.innerHTML=renderResult();
+    bindResult();
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   INIT
+   ═══════════════════════════════════════════════════════ */
+render();
+
+})();
+</script>
+</body>
+</html>
