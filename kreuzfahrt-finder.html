@@ -506,8 +506,12 @@ function formatBold(text){
    ═══════════════════════════════════════════════════════ */
 
 function calculateResults(answers){
+  var zielAnswers=answers.ziel;
+  var wantsFluss=Array.isArray(zielAnswers)?zielAnswers.indexOf('ziel_fluss')>-1:zielAnswers==='ziel_fluss';
+  var expectedTyp=wantsFluss?'fluss':'hochsee';
   var scores={};
   REEDEREIEN.forEach(function(reederei){
+    if(reederei.typ!==expectedTyp)return;
     var total=0;
     Object.keys(answers).forEach(function(key){
       var value=answers[key];
