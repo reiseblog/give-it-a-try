@@ -3,19 +3,15 @@
  * Einbau: WordPress Customizer > Zusätzliches CSS (GeneratePress)
  * Korrespondierendes JS-Snippet: floating-button-wpcode.html (WPCode Footer)
  *
- * Desktop (> 600 px): rechte Seite, vertikal zentriert – Slide-in von rechts
- * Mobil  (≤ 600 px): unten-rechts, eigene Animation
+ * Desktop + Mobil: oben-rechts, Slide-in von oben
  */
 
 /* ── Haupt-Button ─────────────────────────────────────────────── */
 
 .fwb-floating-cta {
   position: fixed;
-  top: 50%;
+  top: 24px;
   right: 24px;
-  left: auto;
-  bottom: auto;
-  transform: translateY(-50%);
   z-index: 9999;
   display: flex;
   align-items: center;
@@ -44,8 +40,7 @@
 
 .fwb-floating-cta:hover,
 .fwb-floating-cta:focus {
-  /* -50% Zentrierung beibehalten + leicht nach oben */
-  transform: translateY(calc(-50% - 3px));
+  transform: translateY(3px);   /* leicht nach unten – weg vom Rand */
   box-shadow:
     0 8px 30px rgba(14, 165, 233, .5),
     0 4px 12px rgba(0, 0, 0, .2);
@@ -105,33 +100,18 @@
 .fwb-floating-cta.is-hidden {
   opacity: 0 !important;          /* !important nötig: Animation-Fill überschreibt sonst opacity */
   pointer-events: none;
-  /* Button gleitet nach rechts raus */
-  transform: translateY(-50%) translateX(60px) scale(.9) !important;
+  transform: translateY(-20px) scale(.9) !important;   /* gleitet nach oben raus */
 }
 
 /* ── Responsive: Tablet / Smartphone (≤ 600 px) ──────────────── */
-/* Auf Mobil: unten-rechts, da dort Google-Ads-Plätze seltener sind */
 
 @media (max-width: 600px) {
   .fwb-floating-cta {
-    top: auto;
-    bottom: 80px;   /* Abstand nach oben vom Viewport-Rand / Cookie-Bar */
+    top: 16px;
     right: 16px;
-    transform: none;
-    animation: fwb-float-in-mobile .6s ease-out 2s both;
     padding: 13px 22px 13px 18px;
     font-size: 15px;
     gap: 10px;
-  }
-
-  .fwb-floating-cta:hover,
-  .fwb-floating-cta:focus {
-    transform: translateY(-3px);
-  }
-
-  /* is-hidden auf Mobil: ohne translateY(-50%) */
-  .fwb-floating-cta.is-hidden {
-    transform: translateX(60px) scale(.9) !important;
   }
 
   .fwb-floating-cta-icon {
@@ -154,27 +134,14 @@
 
 /* ── Keyframes ────────────────────────────────────────────────── */
 
-/* Desktop: Button schwebt von rechts herein, bleibt vertikal zentriert */
 @keyframes fwb-float-in {
   from {
     opacity: 0;
-    transform: translateY(-50%) translateX(60px) scale(.9);
+    transform: translateY(-40px) scale(.9);
   }
   to {
     opacity: 1;
-    transform: translateY(-50%) translateX(0) scale(1);
-  }
-}
-
-/* Mobil: Button schwebt von rechts unten herein */
-@keyframes fwb-float-in-mobile {
-  from {
-    opacity: 0;
-    transform: translateX(60px) scale(.9);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0) scale(1);
+    transform: translateY(0) scale(1);
   }
 }
 
