@@ -1,0 +1,53 @@
+<!-- KREUZFAHRT-FINDER – Floating Button (JavaScript)
+     Einbau: WPCode > Snippet-Typ „HTML" > Einfügeort: Footer
+     Das CSS gehört in: WordPress Customizer > Zusätzliches CSS
+     ──────────────────────────────────────────────────────────── -->
+
+<script>
+(function () {
+  'use strict';
+
+  /* Nicht auf der Quiz-Seite selbst anzeigen */
+  if (window.location.pathname.indexOf('kreuzfahrt-finder') !== -1) return;
+
+  /* Nicht anzeigen wenn User den Button bereits geschlossen hat */
+  if (sessionStorage.getItem('fwb_cta_closed')) return;
+
+  /* ── Button aufbauen ───────────────────────────────────────── */
+
+  var cta = document.createElement('a');
+  cta.href = '/kreuzfahrt-finder/';
+  cta.className = 'fwb-floating-cta';
+  cta.setAttribute('title', 'Welche Kreuzfahrt passt zu dir?');
+  cta.setAttribute('aria-label', 'Kreuzfahrt-Finder öffnen');
+
+  var icon = document.createElement('span');
+  icon.className = 'fwb-floating-cta-icon';
+  icon.setAttribute('aria-hidden', 'true');
+  icon.textContent = '🚢';
+
+  var label = document.createElement('span');
+  label.className = 'fwb-floating-cta-text';
+  label.textContent = 'Kreuzfahrt-Finder';
+
+  var closeBtn = document.createElement('span');
+  closeBtn.className = 'fwb-floating-cta-close';
+  closeBtn.setAttribute('role', 'button');
+  closeBtn.setAttribute('aria-label', 'Button schließen');
+  closeBtn.textContent = '\u00D7'; /* × */
+
+  /* Schließen-Logik sauber via addEventListener */
+  closeBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    cta.classList.add('is-hidden');
+    sessionStorage.setItem('fwb_cta_closed', '1');
+  });
+
+  cta.appendChild(icon);
+  cta.appendChild(label);
+  cta.appendChild(closeBtn);
+
+  document.body.appendChild(cta);
+}());
+</script>
