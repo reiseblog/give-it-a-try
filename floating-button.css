@@ -10,7 +10,7 @@
 
 .fwb-floating-cta {
   position: fixed;
-  top: 24px;
+  top: 80px;
   right: 24px;
   z-index: 9999;
   display: flex;
@@ -107,7 +107,7 @@
 
 @media (max-width: 600px) {
   .fwb-floating-cta {
-    top: 16px;
+    top: 70px;
     right: 16px;
     padding: 13px 22px 13px 18px;
     font-size: 15px;
