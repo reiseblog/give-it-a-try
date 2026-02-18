@@ -9,12 +9,14 @@
 .fwb-floating-cta {
   position: fixed;
   bottom: 24px;
-  right: 24px;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
   z-index: 9999;
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px 20px 12px 16px;
+  gap: 12px;
+  padding: 15px 28px 15px 22px;
   background: linear-gradient(135deg, #0369a1, #0ea5e9);
   color: #fff;
   text-decoration: none;
@@ -22,7 +24,7 @@
   box-shadow:
     0 4px 20px rgba(14, 165, 233, .4),
     0 2px 8px rgba(0, 0, 0, .15);
-  font-size: 14px;
+  font-size: 17px;
   font-weight: 600;
   line-height: 1;
   cursor: pointer;
@@ -39,7 +41,7 @@
 
 .fwb-floating-cta:hover,
 .fwb-floating-cta:focus {
-  transform: translateY(-3px);
+  transform: translateX(-50%) translateY(-3px);
   box-shadow:
     0 8px 30px rgba(14, 165, 233, .5),
     0 4px 12px rgba(0, 0, 0, .2);
@@ -55,7 +57,7 @@
 /* ── Icon ─────────────────────────────────────────────────────── */
 
 .fwb-floating-cta-icon {
-  font-size: 20px;
+  font-size: 24px;
   line-height: 1;
   flex-shrink: 0;
   display: inline-block;
@@ -98,9 +100,9 @@
 /* ── Ausgeblendet ─────────────────────────────────────────────── */
 
 .fwb-floating-cta.is-hidden {
-  opacity: 0;
+  opacity: 0 !important;          /* !important nötig: Animation-Fill überschreibt sonst opacity */
   pointer-events: none;
-  transform: translateY(20px) scale(.9);
+  transform: translateX(-50%) translateY(20px) scale(.9) !important;
 }
 
 /* ── Responsive: Tablet / kleines Smartphone (≤ 600 px) ──────── */
@@ -108,14 +110,13 @@
 @media (max-width: 600px) {
   .fwb-floating-cta {
     bottom: 16px;
-    right: 16px;
-    padding: 11px 16px 11px 13px;
-    font-size: 13px;
-    gap: 8px;
+    padding: 13px 22px 13px 18px;
+    font-size: 15px;
+    gap: 10px;
   }
 
   .fwb-floating-cta-icon {
-    font-size: 18px;
+    font-size: 21px;
   }
 }
 
@@ -137,11 +138,11 @@
 @keyframes fwb-float-in {
   from {
     opacity: 0;
-    transform: translateY(30px) scale(.9);
+    transform: translateX(-50%) translateY(30px) scale(.9);
   }
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateX(-50%) translateY(0) scale(1);
   }
 }
 

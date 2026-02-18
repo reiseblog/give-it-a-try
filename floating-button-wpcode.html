@@ -40,6 +40,7 @@
   closeBtn.addEventListener('click', function (e) {
     e.preventDefault();
     e.stopPropagation();
+    cta.style.animation = 'none'; /* Animation-Fill löschen, sonst überschreibt er is-hidden */
     cta.classList.add('is-hidden');
     sessionStorage.setItem('fwb_cta_closed', '1');
   });
