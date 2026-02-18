@@ -10,7 +10,7 @@
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /*──────────────────────────────────────────────
   SCOPED RESET & VARIABLES
@@ -45,8 +45,8 @@
   --cfq-accent-border-l:rgba(2,132,199,0.15);
   --cfq-grad:linear-gradient(135deg,#0284c7,#0369a1);
   --cfq-grad-bar:linear-gradient(90deg,#0284c7,#0ea5e9);
-  --cfq-f:'DM Sans',sans-serif;
-  --cfq-fh:'Playfair Display',serif;
+  --cfq-f:'Lexend',sans-serif;
+  --cfq-fh:'Lexend',sans-serif;
   font-family:var(--cfq-f);
   line-height:1.5;
 }
@@ -80,7 +80,7 @@
   START SCREEN
 ──────────────────────────────────────────────*/
 .cfq-start{animation:cfq-fadeUp .5s ease-out}
-.cfq-start-title{font-family:var(--cfq-fh);font-size:26px;font-weight:800;color:var(--cfq-text);margin:0 0 7px;line-height:1.2}
+.cfq-start-title{font-family:var(--cfq-fh);font-size:26px;font-weight:700;color:var(--cfq-text);margin:0 0 7px;line-height:1.2}
 .cfq-start-sub{font-size:14px;color:var(--cfq-text-2);margin:0 0 20px;line-height:1.5;max-width:360px;margin-left:auto;margin-right:auto}
 .cfq-start-meta{margin-top:12px;display:flex;justify-content:center;gap:12px;font-size:11px;color:var(--cfq-text-3)}
 
@@ -232,6 +232,54 @@
 .cfq-runner-link:hover{text-decoration:underline}
 
 /*──────────────────────────────────────────────
+  RESULT TAGLINE
+──────────────────────────────────────────────*/
+.cfq-result-tagline{
+  font-size:13px;color:var(--cfq-text-2);line-height:1.5;
+  margin:4px 0 8px;max-width:380px;margin-left:auto;margin-right:auto;
+  font-style:italic;
+}
+
+/*──────────────────────────────────────────────
+  HIGHLIGHTS / QUICK-FACTS
+──────────────────────────────────────────────*/
+.cfq-highlights{margin-bottom:16px}
+.cfq-highlights-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.cfq-highlight-item{
+  display:flex;align-items:center;gap:8px;
+  padding:8px 10px;background:var(--cfq-bg-subtle);
+  border:1px solid var(--cfq-border-light);border-radius:8px;
+}
+.cfq-highlight-icon{font-size:16px;flex-shrink:0}
+.cfq-highlight-text{min-width:0}
+.cfq-highlight-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--cfq-text-3)}
+.cfq-highlight-value{font-size:12px;color:var(--cfq-text-soft);font-weight:500}
+
+/*──────────────────────────────────────────────
+  EXPANDED RUNNER-UP CARDS
+──────────────────────────────────────────────*/
+.cfq-runner-expanded{
+  display:flex;flex-direction:column;gap:8px;
+  padding:12px 14px;background:var(--cfq-bg-subtle);
+  border:1px solid var(--cfq-border-light);border-radius:11px;margin-bottom:8px;
+}
+.cfq-runner-expanded .cfq-runner-top{display:flex;align-items:center;gap:9px}
+.cfq-runner-tagline{font-size:12px;color:var(--cfq-text-2);line-height:1.4;font-style:italic}
+.cfq-runner-usps{display:flex;flex-direction:column;gap:3px}
+.cfq-runner-usp{font-size:12px;color:var(--cfq-text-soft);padding:3px 0}
+.cfq-runner-cta{
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  padding:9px 14px;background:var(--cfq-bg-card);
+  border:1px solid var(--cfq-accent-border-l);border-radius:9px;
+  color:var(--cfq-accent-text);font-size:13px;font-weight:600;
+  font-family:var(--cfq-f);text-decoration:none;transition:all .15s ease;
+}
+.cfq-runner-cta:hover{
+  background:var(--cfq-accent-bg);border-color:var(--cfq-accent-border);
+  color:var(--cfq-accent-dark);
+}
+
+/*──────────────────────────────────────────────
   FOOTER
 ──────────────────────────────────────────────*/
 .cfq-footer{text-align:center;margin-top:24px;padding:12px 0;border-top:1px solid var(--cfq-border-light)}
@@ -249,6 +297,7 @@
   .cfq-wrap{padding:0 2px}
   .cfq-start-title{font-size:22px}
   .cfq-option{padding:10px 10px}
+  .cfq-highlights-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -484,21 +533,103 @@ function calculateResults(answers){
 
 function generateExplanation(winner,answers){
   var parts=[];
-  var budgetLabels={budget_budget:"g\u00fcnstigen Preisen",budget_mittel:"fairem Preis-Leistungs-Verh\u00e4ltnis",budget_premium:"Premium-Qualit\u00e4t",budget_luxus:"echtem Luxus"};
-  var atmosphereLabels={atmosphaere_party:"Action und Entertainment",atmosphaere_wellness:"Wellness und Entspannung",atmosphaere_kultur:"Kultur und Bildung",atmosphaere_abenteuer:"Abenteuer und Natur"};
-  var foodLabels={kulinarik_allinclusive:"ein unkompliziertes All-Inclusive-Konzept",kulinarik_auswahl:"eine gute Restaurantauswahl",kulinarik_gourmet:"erstklassige Gourmetk\u00fcche"};
+  var s=winner.scores;
 
-  if(answers.budget){parts.push("Du suchst nach "+(budgetLabels[answers.budget]||"einer guten Kreuzfahrt"))}
-  if(answers.atmosphaere){
-    var keys=Array.isArray(answers.atmosphaere)?answers.atmosphaere:[answers.atmosphaere];
-    var labels=keys.map(function(k){return atmosphereLabels[k]}).filter(Boolean);
-    if(labels.length)parts.push("legst Wert auf "+labels.join(" und "));
+  // Budget-spezifische Aussage
+  if(answers.budget){
+    if(answers.budget==='budget_luxus'&&s.budget_luxus>=8){
+      parts.push('**'+winner.name+'** geh\u00f6rt zur absoluten Spitzenklasse und bietet echten Luxus auf See');
+    }else if(answers.budget==='budget_budget'&&s.budget_budget>=8){
+      parts.push('**'+winner.name+'** bietet ein hervorragendes Preis-Leistungs-Verh\u00e4ltnis und passt perfekt zu deinem Budget');
+    }else if(answers.budget==='budget_premium'&&s.budget_premium>=7){
+      parts.push('**'+winner.name+'** liefert Premium-Qualit\u00e4t, die ihren Preis wert ist');
+    }else if(answers.budget==='budget_mittel'&&s.budget_mittel>=7){
+      parts.push('**'+winner.name+'** trifft die goldene Mitte zwischen Preis und Leistung');
+    }
   }
-  if(answers.kulinarik){parts.push("w\u00fcnschst dir "+(foodLabels[answers.kulinarik]||"gutes Essen"))}
 
-  var text=parts.length>0?parts.join(", ")+". ":"";
-  text+="**"+winner.name+"** trifft genau diesen Nerv: "+winner.kurzbeschreibung;
-  return text;
+  // Reisegruppen-Match
+  if(answers.gruppe){
+    var gruppeKeys=Array.isArray(answers.gruppe)?answers.gruppe:[answers.gruppe];
+    var gruppeLabels={
+      gruppe_paar:'perfekt f\u00fcr Paare',
+      gruppe_familie_klein:'ideal f\u00fcr Familien mit kleinen Kindern',
+      gruppe_familie_teen:'genau richtig f\u00fcr Familien mit Teenagern',
+      gruppe_solo:'eine top Wahl f\u00fcr Alleinreisende',
+      gruppe_freunde:'gro\u00dfartig f\u00fcr Freundesgruppen',
+      gruppe_senioren:'speziell auf Best Ager zugeschnitten'
+    };
+    var bestGruppe=null;var bestScore=0;
+    gruppeKeys.forEach(function(k){
+      if(s[k]>=7&&s[k]>bestScore){bestScore=s[k];bestGruppe=k}
+    });
+    if(bestGruppe&&gruppeLabels[bestGruppe]){
+      parts.push('Die Reederei ist '+gruppeLabels[bestGruppe]);
+    }
+  }
+
+  // Atmosph\u00e4re-Match
+  if(answers.atmosphaere){
+    var atmoKeys=Array.isArray(answers.atmosphaere)?answers.atmosphaere:[answers.atmosphaere];
+    var atmoMatch=[];
+    if(atmoKeys.indexOf('atmosphaere_wellness')>-1&&s.atmosphaere_wellness>=7)atmoMatch.push('erstklassige Wellness');
+    if(atmoKeys.indexOf('atmosphaere_party')>-1&&s.atmosphaere_party>=7)atmoMatch.push('ein gro\u00dfes Entertainment-Angebot');
+    if(atmoKeys.indexOf('atmosphaere_kultur')>-1&&s.atmosphaere_kultur>=7)atmoMatch.push('ein starkes Kulturprogramm');
+    if(atmoKeys.indexOf('atmosphaere_abenteuer')>-1&&s.atmosphaere_abenteuer>=7)atmoMatch.push('echte Abenteuer und Expeditionen');
+    if(atmoMatch.length){
+      parts.push('An Bord erwartet dich '+atmoMatch.join(' und '));
+    }
+  }
+
+  // Sprache-Match
+  if(answers.sprache==='sprache_deutsch'&&s.sprache_deutsch>=8){
+    parts.push('Das komplette Bordprogramm l\u00e4uft auf Deutsch');
+  }
+
+  // Kulinarik-Match
+  if(answers.kulinarik){
+    if(answers.kulinarik==='kulinarik_gourmet'&&s.kulinarik_gourmet>=8){
+      parts.push('Die K\u00fcche z\u00e4hlt zu den besten auf See');
+    }else if(answers.kulinarik==='kulinarik_allinclusive'&&s.kulinarik_allinclusive>=8){
+      parts.push('Das All-Inclusive-Konzept l\u00e4sst keine W\u00fcnsche offen');
+    }
+  }
+
+  if(parts.length===0){
+    return '**'+winner.name+'** passt am besten zu deinem Gesamtprofil und erzielt den h\u00f6chsten Match-Score \u00fcber alle Kategorien.';
+  }
+  return parts.join('. ')+'.';
+}
+
+function deriveHighlights(r){
+  var h=[];var s=r.scores;
+
+  // Sprache
+  if(s.sprache_deutsch>=8){h.push({icon:'\ud83d\udde3\ufe0f',label:'Sprache',value:'Deutsch an Bord'})}
+  else if(s.sprache_international>=8){h.push({icon:'\ud83d\udde3\ufe0f',label:'Sprache',value:'International (EN)'})}
+  else{h.push({icon:'\ud83d\udde3\ufe0f',label:'Sprache',value:'Mehrsprachig'})}
+
+  // Schiffsgr\u00f6\u00dfe
+  if(r.typ==='fluss'){h.push({icon:'\u26f5',label:'Schiffsgr\u00f6\u00dfe',value:'Flussschiff (bis 200 G\u00e4ste)'})}
+  else if(s.schiff_mega>=8){h.push({icon:'\ud83d\udea2',label:'Schiffsgr\u00f6\u00dfe',value:'Mega-Ship (3.000+ G\u00e4ste)'})}
+  else if(s.schiff_boutique>=8){h.push({icon:'\u26f5',label:'Schiffsgr\u00f6\u00dfe',value:'Boutique (unter 1.000 G\u00e4ste)'})}
+  else{h.push({icon:'\ud83d\udea2',label:'Schiffsgr\u00f6\u00dfe',value:'Mittelgro\u00df (1.000\u20133.000 G\u00e4ste)'})}
+
+  // Dresscode
+  if(s.dresscode_leger>=8){h.push({icon:'\ud83d\udc55',label:'Dresscode',value:'Leger & casual'})}
+  else if(s.dresscode_schick>=7){h.push({icon:'\ud83d\udc54',label:'Dresscode',value:'Elegant / Gala-Abende'})}
+  else{h.push({icon:'\ud83d\udc54',label:'Dresscode',value:'Smart Casual'})}
+
+  // K\u00fcche
+  if(s.kulinarik_gourmet>=8){h.push({icon:'\ud83c\udf7d\ufe0f',label:'K\u00fcche',value:'Gourmet / Fine Dining'})}
+  else if(s.kulinarik_allinclusive>=8){h.push({icon:'\ud83c\udf7d\ufe0f',label:'K\u00fcche',value:'All-Inclusive'})}
+  else if(s.kulinarik_auswahl>=7){h.push({icon:'\ud83c\udf7d\ufe0f',label:'K\u00fcche',value:'Gro\u00dfe Restaurantauswahl'})}
+
+  // Publikum
+  if(s.kinder_top>=8){h.push({icon:'\ud83e\uddd2',label:'Familien',value:'Top-Kinderprogramm'})}
+  else if(s.kinder_keine>=8){h.push({icon:'\ud83c\udf77',label:'Publikum',value:'Erwachsenenorientiert'})}
+
+  return h;
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -612,6 +743,7 @@ function renderResult(){
       '<div class="cfq-result-header">'+
         '<div class="cfq-result-label">Dein Ergebnis</div>'+
         '<h2 class="cfq-result-name">'+escHtml(winner.name)+'</h2>'+
+        '<div class="cfq-result-tagline">'+escHtml(winner.kurzbeschreibung)+'</div>'+
         '<div class="cfq-result-type">'+typLabel+' &middot; '+escHtml(winner.preisrange)+'/Woche</div>'+
       '</div>'+
       '<div class="cfq-match-box">'+
@@ -620,9 +752,26 @@ function renderResult(){
           '<div><div class="cfq-match-title">Match-Score</div><div class="cfq-match-sub">Passt am besten zu deinen W\u00fcnschen</div></div>'+
         '</div>'+
         '<p class="cfq-explanation">'+formatBold(explanation)+'</p>'+
-      '</div>'+
-      '<div style="margin-bottom:14px"><div class="cfq-section-label">Top 3 St\u00e4rken</div>';
+      '</div>';
 
+  // Auf einen Blick — Highlights
+  var highlights=deriveHighlights(winner);
+  html+='<div class="cfq-highlights">'+
+    '<div class="cfq-section-label">Auf einen Blick</div>'+
+    '<div class="cfq-highlights-grid">';
+  highlights.forEach(function(hl){
+    html+='<div class="cfq-highlight-item">'+
+      '<span class="cfq-highlight-icon">'+hl.icon+'</span>'+
+      '<div class="cfq-highlight-text">'+
+        '<div class="cfq-highlight-label">'+escHtml(hl.label)+'</div>'+
+        '<div class="cfq-highlight-value">'+escHtml(hl.value)+'</div>'+
+      '</div>'+
+    '</div>';
+  });
+  html+='</div></div>';
+
+  // Top 3 St\u00e4rken
+  html+='<div style="margin-bottom:14px"><div class="cfq-section-label">Top 3 St\u00e4rken</div>';
   winner.usp.forEach(function(u,i){
     html+='<div class="cfq-usp"><span class="cfq-usp-num">'+(i+1)+'.</span> '+escHtml(u)+'</div>';
   });
@@ -633,13 +782,22 @@ function renderResult(){
     '<div style="margin-bottom:16px"><div class="cfq-section-label">Auch interessant</div>';
 
   runners.forEach(function(r){
-    html+='<div class="cfq-runner">'+
-      '<div class="cfq-runner-score">'+r.matchPercent+'%</div>'+
-      '<div class="cfq-runner-info">'+
-        '<div class="cfq-runner-name">'+escHtml(r.name)+'</div>'+
-        '<div class="cfq-runner-detail">'+escHtml(r.preisrange)+' &middot; '+escHtml(r.usp[0])+'</div>'+
+    var rTypLabel=r.typ==='fluss'?'Flusskreuzfahrt':'Hochseekreuzfahrt';
+    html+='<div class="cfq-runner cfq-runner-expanded">'+
+      '<div class="cfq-runner-top">'+
+        '<div class="cfq-runner-score">'+r.matchPercent+'%</div>'+
+        '<div class="cfq-runner-info">'+
+          '<div class="cfq-runner-name">'+escHtml(r.name)+'</div>'+
+          '<div class="cfq-runner-detail">'+rTypLabel+' &middot; '+escHtml(r.preisrange)+'/Woche</div>'+
+        '</div>'+
       '</div>'+
-      '<a class="cfq-runner-link" href="'+escHtml(r.affiliate)+'" target="_blank" rel="noopener noreferrer sponsored">Ansehen&rarr;</a>'+
+      '<div class="cfq-runner-tagline">'+escHtml(r.kurzbeschreibung)+'</div>'+
+      '<div class="cfq-runner-usps">';
+    r.usp.forEach(function(u){
+      html+='<div class="cfq-runner-usp">\u2713 '+escHtml(u)+'</div>';
+    });
+    html+='</div>'+
+      '<a class="cfq-runner-cta" href="'+escHtml(r.affiliate)+'" target="_blank" rel="noopener noreferrer sponsored">'+escHtml(r.affiliateLabel)+' &rarr;</a>'+
     '</div>';
   });
 
