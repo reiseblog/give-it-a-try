@@ -107,23 +107,23 @@
 
 @media (max-width: 600px) {
   .fwb-floating-cta {
-    top: 70px;
-    right: 16px;
-    padding: 13px 22px 13px 18px;
-    font-size: 15px;
-    gap: 10px;
+    top: 64px;
+    right: 12px;
+    padding: 10px 16px 10px 13px;
+    font-size: 13px;
+    gap: 7px;
   }
 
   .fwb-floating-cta-icon {
-    font-size: 21px;
+    font-size: 18px;
   }
 }
 
-/* ── Responsive: Sehr kleine Screens (≤ 380 px) – nur Icon ───── */
+/* ── Responsive: Sehr kleine Screens (≤ 480 px) – nur Icon ───── */
 
-@media (max-width: 380px) {
+@media (max-width: 480px) {
   .fwb-floating-cta {
-    padding: 14px;
+    padding: 11px;
     border-radius: 50%;
   }
 
